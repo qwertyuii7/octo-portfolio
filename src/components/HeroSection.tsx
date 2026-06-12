@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { profile } from "../data/mockData";
 
 export function HeroSection() {
@@ -13,6 +13,25 @@ export function HeroSection() {
     };
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  const [timeStr, setTimeStr] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const time = now.toLocaleTimeString("en-US", { 
+        timeZone: "Asia/Kolkata", 
+        hour12: true, 
+        hour: "numeric", 
+        minute: "2-digit", 
+        second: "2-digit" 
+      });
+      setTimeStr(`Lucknow, India · ${time} IST`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const [first, last] = profile.name.split(" ");
@@ -50,7 +69,7 @@ export function HeroSection() {
 
         {/* Location */}
         <div className="reveal-item" style={{ transitionDelay: ".5s", marginTop: 32 }}>
-          <p className="section-label" style={{ marginBottom: 0 }}>Lucknow, India · UTC+5:30</p>
+          <p className="section-label" style={{ marginBottom: 0 }}>{timeStr || "Lucknow, India · UTC+5:30"}</p>
         </div>
       </div>
 

@@ -30,7 +30,7 @@ export function Navigation() {
           WebkitBackdropFilter: "blur(14px)",
         }}
       >
-        <div className="px-6 md:px-12" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+        <div className="px-6 lg:px-12" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
 
           {/* Logo */}
           <a
@@ -53,7 +53,7 @@ export function Navigation() {
 
           {/* Desktop nav links */}
           <ul style={{ display: "flex", alignItems: "center", gap: 36, listStyle: "none", margin: 0, padding: 0 }}
-            className="hidden md:flex"
+            className="hidden lg:flex"
           >
             {navItems.map(item => (
               <li key={item.href}>
@@ -63,7 +63,7 @@ export function Navigation() {
           </ul>
 
           {/* Right actions */}
-          <div className="hidden md:flex" style={{ alignItems: "center", gap: 20 }}>
+          <div className="hidden lg:flex" style={{ alignItems: "center", gap: 20 }}>
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -88,7 +88,7 @@ export function Navigation() {
             {/* Hire badge */}
             <a
             href="#contact"
-            className="hidden md:flex"
+            className="hidden lg:flex"
             style={{
               alignItems: "center", gap: 8,
               background: "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))",
@@ -118,7 +118,7 @@ export function Navigation() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setOpen(!open)}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "flex", flexDirection: "column", gap: 5 }}
             aria-label="Menu"
@@ -151,7 +151,7 @@ export function Navigation() {
         justifyContent: "flex-start", padding: "100px 32px 40px",
         overflowY: "auto"
       }}
-      className="md:hidden"
+      className="lg:hidden"
       >
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {navItems.map(item => (
