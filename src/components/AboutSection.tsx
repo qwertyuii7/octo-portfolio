@@ -1,4 +1,4 @@
-import { profile, skillGroups } from "../data/mockData";
+import { profile, skillGroups, aboutHighlights } from "../data/mockData";
 import { useLiveStats } from "../hooks/useLiveStats";
 
 export function AboutSection() {
@@ -8,8 +8,7 @@ export function AboutSection() {
   const HIGHLIGHTS = [
     { value: isLoading ? "..." : (stats.github ? `${stats.github.publicRepos}+` : "20+"),  label: "GitHub Repos",       sub: "Public projects shipped" },
     { value: isLoading ? "..." : (stats.leetcode ? `${stats.leetcode.totalSolved}+` : "135+"), label: "Problems Solved",     sub: "LeetCode (Easy/Med/Hard)" },
-    { value: "3+",   label: "Years of Coding",     sub: "Self-taught since school" },
-    { value: "5",    label: "Shipped Products",    sub: "Web · C++ · Python" },
+    ...aboutHighlights,
   ];
 
   return (

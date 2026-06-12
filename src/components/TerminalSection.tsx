@@ -1,15 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
-const COMMANDS: Record<string, string> = {
-  help:          "Commands: help · whoami · stack · projects · github · leetcode · matrix · clear",
-  whoami:        "Mayank Chaudhary — CS Engineering Student @ Lucknow University.\nBuilds in C++, Python & Web. Open to freelance work.",
-  stack:         "Languages : C++, Python, TypeScript, JavaScript\nWeb       : React, Vite, Node.js, REST APIs\nTools     : Git, Linux, Figma",
-  projects:      "1. MEDIGUARD       — Healthcare safety platform\n2. DEVELOPER LEAGUE — Global dev ranking system\n3. SMART HOME AUTO — Command-driven home mgmt\n4. BANKING SYSTEM  — C++ terminal core banking\n5. SECURE AUTH     — C++ authentication engine",
-  github:        "→ Redirecting to github.com/qwertyuii7 ...",
-  leetcode:      "→ Redirecting to leetcode.com/u/chaudharymayank/ ...",
-  matrix:        "MATRIX_MODE=ON",
-  clear:         "",
-};
+import { terminalCommandResponses as COMMANDS } from "../data/mockData";
 
 type Line = { type: "cmd" | "out"; text: string };
 
@@ -25,17 +15,19 @@ export function TerminalSection() {
   const inputRef   = useRef<HTMLInputElement>(null);
   const canvasRef  = useRef<HTMLCanvasElement>(null);     // in-terminal subtle bg
   const flashRef   = useRef<HTMLCanvasElement>(null);    // full-page dramatic overlay
-  const matrixInt  = useRef<ReturnType<typeof setInterval> | null>(null);
-  const flashInt   = useRef<ReturnType<typeof setInterval> | null>(null);
+  const matrixReq  = useRef<number | null>(null);
+  const flashReq   = useRef<number | null>(null);
+  const isVisible  = useRef(true);
 
   // Auto-scroll
   useEffect(() => {
     bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight });
   }, [history]);
 
-  // Auto-type on reveal
+  // Auto-type on reveal and track visibility
   useEffect(() => {
     const observer = new IntersectionObserver(([e]) => {
+      isVisible.current = e.isIntersecting;
       if (e.isIntersecting && !autoTyped) {
         setAuto(true);
         setTimeout(() => {
@@ -43,7 +35,7 @@ export function TerminalSection() {
           setTimeout(() => setHistory(p => [...p, { type: "out", text: COMMANDS.whoami }]), 500);
         }, 900);
       }
-    }, { threshold: 0.4 });
+    }, { threshold: 0.1 });
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, [autoTyped]);
@@ -57,6 +49,7 @@ export function TerminalSection() {
     const CHARS  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
     const FS     = 12;
     let cols: number[] = [];
+    let lastTime = 0;
 
     const resize = () => {
       const p = canvas.parentElement;
@@ -68,7 +61,12 @@ export function TerminalSection() {
     resize();
     window.addEventListener("resize", resize);
 
-    matrixInt.current = setInterval(() => {
+    const draw = (time: number) => {
+      matrixReq.current = requestAnimationFrame(draw);
+      if (!isVisible.current) return;
+      if (time - lastTime < 40) return;
+      lastTime = time;
+
       ctx.fillStyle = "rgba(0,0,0,.07)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0f0";
@@ -78,10 +76,11 @@ export function TerminalSection() {
         if (y * FS > canvas.height && Math.random() > .975) cols[i] = 0;
         else cols[i]++;
       });
-    }, 40);
+    };
+    matrixReq.current = requestAnimationFrame(draw);
 
     return () => {
-      if (matrixInt.current) clearInterval(matrixInt.current);
+      if (matrixReq.current) cancelAnimationFrame(matrixReq.current);
       window.removeEventListener("resize", resize);
     };
   }, [matrixActive]);
@@ -95,6 +94,7 @@ export function TerminalSection() {
     const CHARS  = "ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコ0123456789@#$%^&*";
     const FS     = 16;
     let cols: number[] = [];
+    let lastTime = 0;
 
     const resize = () => {
       canvas.width  = window.innerWidth;
@@ -104,7 +104,11 @@ export function TerminalSection() {
     resize();
     window.addEventListener("resize", resize);
 
-    flashInt.current = setInterval(() => {
+    const draw = (time: number) => {
+      flashReq.current = requestAnimationFrame(draw);
+      if (time - lastTime < 30) return;
+      lastTime = time;
+
       ctx.fillStyle = "rgba(0,0,0,.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#00ff41";
@@ -114,7 +118,8 @@ export function TerminalSection() {
         if (y * FS > canvas.height && Math.random() > .975) cols[i] = 0;
         else cols[i]++;
       });
-    }, 30);
+    };
+    flashReq.current = requestAnimationFrame(draw);
 
     // Auto-dismiss after 4 s
     const dismiss = setTimeout(() => {
@@ -124,7 +129,7 @@ export function TerminalSection() {
     }, 4000);
 
     return () => {
-      if (flashInt.current) clearInterval(flashInt.current);
+      if (flashReq.current) cancelAnimationFrame(flashReq.current);
       window.removeEventListener("resize", resize);
       clearTimeout(dismiss);
     };

@@ -5,14 +5,38 @@ export function HeroSection() {
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const move = (e: MouseEvent) => {
-      if (!imgRef.current || window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-      const x = (e.clientX - window.innerWidth  / 2) / 80;
-      const y = (e.clientY - window.innerHeight / 2) / 80;
-      imgRef.current.style.transform = `scale(1.04) translate(${x}px, ${y}px)`;
+    const resetTransform = () => {
+      if (imgRef.current && window.matchMedia("(max-width: 768px)").matches) {
+        imgRef.current.style.transform = "";
+      }
     };
+
+    let reqId: number | null = null;
+    let targetX = 0, targetY = 0;
+
+    const render = () => {
+      if (imgRef.current) {
+        imgRef.current.style.transform = `scale(1.03) translate(${targetX}px, ${targetY}px)`;
+      }
+    };
+
+    const move = (e: MouseEvent) => {
+      if (!imgRef.current) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (window.matchMedia("(max-width: 768px)").matches) return;
+      targetX = (e.clientX - window.innerWidth / 2) / 80;
+      targetY = (e.clientY - window.innerHeight / 2) / 80;
+      if (reqId) cancelAnimationFrame(reqId);
+      reqId = requestAnimationFrame(render);
+    };
+
+    resetTransform();
     window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    window.addEventListener("resize", resetTransform);
+    return () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("resize", resetTransform);
+    };
   }, []);
 
   const [timeStr, setTimeStr] = useState("");

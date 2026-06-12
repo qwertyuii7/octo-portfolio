@@ -214,6 +214,40 @@ export const journeyItems = [
   },
 ] as const;
 
+export const milestoneCarouselItems = [
+  {
+    src: "/assets/events/google-devfest-2025-lucknow.jpg",
+    title: "Google DevFest 2025 · Lucknow",
+    alt: "Mayank at Google DevFest Lucknow 2025",
+  },
+  {
+    src: "/assets/events/foss-2026.jpg",
+    title: "FOSS United · Community Meetup 2026",
+    alt: "FOSS United community event 2026",
+  },
+  {
+    src: "/assets/events/foss-february-meetup-2026.jpg",
+    title: "FOSS February Meetup · Lucknow",
+    alt: "FOSS February meetup in Lucknow 2026",
+  },
+  {
+    src: "/assets/events/gdg-agentic-premier-league-2026.jpeg",
+    title: "GDG Agentic Premier League Hackathon",
+    alt: "GDG Agentic Premier League Hackathon 2026",
+  },
+  {
+    src: "/assets/events/gdg-api-hackathon-finale-2026.png",
+    title: "GDG API Hackathon · Finale 2026",
+    alt: "GDG API Hackathon finale 2026",
+  },
+  {
+    src: "/assets/events/gdg-product-builder-day-2026.jpg",
+    title: "GDG Product Builder Day 2026",
+    alt: "Google Developer Group Product Builder Day 2026",
+  },
+
+] as const;
+
 export const terminalCommands = [
   "help",
   "whoami",
@@ -224,3 +258,40 @@ export const terminalCommands = [
   "stack",
   "clear",
 ] as const;
+
+export const terminalCommandResponses: Record<string, string> = {
+  help:          "Commands: help · whoami · stack · projects · github · leetcode · matrix · clear",
+  whoami:        "Mayank Chaudhary — CS Engineering Student @ Lucknow University.\nBuilds in C++, Python & Web. Open to freelance work.",
+  stack:         "Languages : C++, Python, TypeScript, JavaScript\nWeb       : React, Vite, Node.js, REST APIs\nTools     : Git, Linux, Figma",
+  projects:      "1. MEDIGUARD       — Healthcare safety platform\n2. DEVELOPER LEAGUE — Global dev ranking system\n3. SMART HOME AUTO — Command-driven home mgmt\n4. BANKING SYSTEM  — C++ terminal core banking\n5. SECURE AUTH     — C++ authentication engine",
+  github:        "→ Redirecting to github.com/qwertyuii7 ...",
+  leetcode:      "→ Redirecting to leetcode.com/u/chaudharymayank/ ...",
+  matrix:        "MATRIX_MODE=ON",
+  clear:         "",
+};
+
+export const aboutHighlights = [
+  { value: "3+",   label: "Years of Coding",     sub: "Self-taught since school" },
+  { value: "5",    label: "Shipped Products",    sub: "Web · C++ · Python" },
+];
+
+export const earlyExperiences = [
+  {
+    year: "2022",
+    title: "Completed 12th (PCM)",
+    org: "Jawahar Navodaya Vidyalaya, Etawah",
+    desc: "Science stream with Physics, Chemistry & Mathematics.",
+  },
+  {
+    year: "2024 – Present",
+    title: "CS Engineering Student",
+    org: "Lucknow University, Lucknow",
+    desc: "Currently entering 3rd year. Building projects in C++, Python, and Web technologies alongside academics.",
+  },
+  {
+    year: "Now  ◉",
+    title: "Finding work as a Freelancer",
+    org: "Open to opportunities",
+    desc: "Available for freelance web development, product engineering, and open-source collaboration.",
+  },
+];
