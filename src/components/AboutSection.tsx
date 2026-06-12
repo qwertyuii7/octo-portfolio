@@ -1,14 +1,17 @@
 import { profile, skillGroups } from "../data/mockData";
-
-// Recruiter-impressive: specific numbers tell a real story
-const HIGHLIGHTS = [
-  { value: "20+",  label: "GitHub Repos",       sub: "Public projects shipped" },
-  { value: "135+", label: "Problems Solved",     sub: "LeetCode (Easy/Med/Hard)" },
-  { value: "3+",   label: "Years of Coding",     sub: "Self-taught since school" },
-  { value: "5",    label: "Shipped Products",    sub: "Web · C++ · Python" },
-];
+import { useLiveStats } from "../hooks/useLiveStats";
 
 export function AboutSection() {
+  const { stats, isLoading } = useLiveStats(profile.githubUsername, profile.leetcodeUsername);
+
+  // Recruiter-impressive: specific numbers tell a real story
+  const HIGHLIGHTS = [
+    { value: isLoading ? "..." : (stats.github ? `${stats.github.publicRepos}+` : "20+"),  label: "GitHub Repos",       sub: "Public projects shipped" },
+    { value: isLoading ? "..." : (stats.leetcode ? `${stats.leetcode.totalSolved}+` : "135+"), label: "Problems Solved",     sub: "LeetCode (Easy/Med/Hard)" },
+    { value: "3+",   label: "Years of Coding",     sub: "Self-taught since school" },
+    { value: "5",    label: "Shipped Products",    sub: "Web · C++ · Python" },
+  ];
+
   return (
     <section
       className="py-20 md:py-32 px-6 md:px-12 border-b"

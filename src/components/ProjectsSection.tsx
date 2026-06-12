@@ -111,9 +111,17 @@ export function ProjectsSection() {
                 >
                   {String(i + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-lg font-bold uppercase tracking-wide text-[var(--text-primary)] mb-2 leading-tight">
-                  {project.name}
-                </h3>
+                <div className="flex items-start justify-between gap-4 mb-2">
+                  <h3 className="text-lg font-bold uppercase tracking-wide text-[var(--text-primary)] leading-tight">
+                    {project.name}
+                  </h3>
+                  {project.inProgress && (
+                    <div className="flex items-center gap-2 border px-2 py-1 shrink-0" style={{ borderColor: "rgba(255,189,46,.3)", background: "rgba(255,189,46,.05)", borderRadius: "2px" }}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ffbd2e] shadow-[0_0_4px_#ffbd2e] animate-pulse"></span>
+                      <span className="font-mono text-[9px] text-[#ffbd2e] tracking-widest uppercase">In Progress</span>
+                    </div>
+                  )}
+                </div>
                 <p className="text-sm text-[var(--text-muted)] font-mono mb-2">{project.subtitle}</p>
                 <p className="text-base text-[var(--text-muted)] leading-relaxed mt-3">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-5">

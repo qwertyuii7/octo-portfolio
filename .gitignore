@@ -1,5 +1,29 @@
 node_modules/
 dist/
+build/
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and coverage
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/

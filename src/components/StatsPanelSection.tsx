@@ -1,8 +1,25 @@
 import { GitHubCalendar } from "react-github-calendar";
-import { githubStats, leetcodeRows, platformLinks } from "../data/mockData";
+import { githubStats as staticGithubStats, leetcodeRows as staticLeetcodeRows, platformLinks, profile } from "../data/mockData";
+import { useLiveStats } from "../hooks/useLiveStats";
 
 export function StatsPanelSection() {
-  const total = leetcodeRows.reduce((s, r) => s + parseInt(r.value), 0);
+  const { stats, isLoading } = useLiveStats(profile.githubUsername, profile.leetcodeUsername);
+  
+  // Fallbacks
+  const displayGithubStats = stats.github ? [
+    { label: "Public Repos", value: stats.github.publicRepos.toString() },
+    { label: "Primary Stack", value: "C++ / Web" }, // static
+    { label: "Recent Push", value: stats.github.recentPush },
+    { label: "Profile Since", value: stats.github.profileSince },
+  ] : staticGithubStats;
+
+  const displayLeetcodeTotal = stats.leetcode ? stats.leetcode.totalSolved : staticLeetcodeRows.reduce((s, r) => s + parseInt(r.value), 0);
+  
+  const displayLeetcodeRows = stats.leetcode ? [
+    { label: "Easy", value: stats.leetcode.easy.toString(), pct: stats.leetcode.easyPct },
+    { label: "Medium", value: stats.leetcode.medium.toString(), pct: stats.leetcode.mediumPct },
+    { label: "Hard", value: stats.leetcode.hard.toString(), pct: stats.leetcode.hardPct },
+  ] : staticLeetcodeRows;
 
   return (
     <section className="section-pad border-b" style={{ borderColor: "var(--border-primary)" }} id="stats">
@@ -29,9 +46,11 @@ export function StatsPanelSection() {
           </div>
           {/* Quick stat pills */}
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-            {githubStats.map(s => (
+            {displayGithubStats.map(s => (
               <div key={s.label} style={{ textAlign: "right" }}>
-                <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 18, fontWeight: 900, color: "var(--text-primary)", lineHeight: 1 }}>{s.value}</p>
+                <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 18, fontWeight: 900, color: "var(--text-primary)", lineHeight: 1 }}>
+                  {isLoading ? "..." : s.value}
+                </p>
                 <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 9, color: "#666", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{s.label}</p>
               </div>
             ))}
@@ -76,17 +95,19 @@ export function StatsPanelSection() {
             @chaudharymayank ↗
           </a>
           <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 52, fontWeight: 900, color: "var(--text-primary)", lineHeight: 1, marginBottom: 20 }}>
-            {total}
+            {isLoading ? "..." : displayLeetcodeTotal}
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {leetcodeRows.map(row => (
+            {displayLeetcodeRows.map(row => (
               <div key={row.label}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
                   <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: ".1em" }}>{row.label}</span>
-                  <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: "var(--text-primary)", fontWeight: 700 }}>{row.value}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: "var(--text-primary)", fontWeight: 700 }}>
+                    {isLoading ? "..." : row.value}
+                  </span>
                 </div>
                 <div className="progress-bar-track">
-                  <div className="progress-bar-fill" style={{ width: `${row.pct}%` }} />
+                  <div className="progress-bar-fill" style={{ width: isLoading ? "0%" : `${row.pct}%` }} />
                 </div>
               </div>
             ))}

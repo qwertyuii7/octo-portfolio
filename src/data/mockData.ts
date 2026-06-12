@@ -11,6 +11,7 @@ export type Project = Readonly<{
   updated: string;
   linkText?: string;
   imageUrl?: string;
+  inProgress?: boolean;
 }>;
 
 export type SkillGroup = Readonly<{
@@ -105,6 +106,7 @@ export const projects: readonly Project[] = [
     tags: ["HTML", "CSS", "JavaScript", "IoT", "Automation"],
     language: "HTML",
     updated: "May 2026",
+    inProgress: true,
   },
   {
     id: "04",
