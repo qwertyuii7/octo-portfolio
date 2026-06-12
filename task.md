@@ -1,0 +1,5 @@
+- `[x]` 1. Fix Hero Section Name Overflow and Image positioning.
+- `[x]` 2. Animate Bootloader sequence.
+- `[x]` 3. Update Journey panel with real data and user image.
+- `[x]` 4. Integrate real GitHub contributions graph.
+- `[x]` 5. Add Stats Panel for LeetCode & GitHub counts.
