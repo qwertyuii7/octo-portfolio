@@ -128,8 +128,8 @@ export function Navigation() {
                 display: "block", width: 24, height: 1.5, background: "var(--text-primary)",
                 transition: "all .25s",
                 transform: open
-                  ? i === 0 ? "rotate(45deg) translateY(6.5px)"
-                  : i === 2 ? "rotate(-45deg) translateY(-6.5px)"
+                  ? i === 0 ? "translateY(6.5px) rotate(45deg)"
+                  : i === 2 ? "translateY(-6.5px) rotate(-45deg)"
                   : "scaleX(0)"
                   : "none",
                 opacity: open && i === 1 ? 0 : 1,
@@ -148,7 +148,8 @@ export function Navigation() {
         transform: open ? "translateY(0)" : "translateY(-8px)",
         transition: "opacity .3s, transform .3s",
         display: "flex", flexDirection: "column",
-        justifyContent: "center", padding: "0 32px",
+        justifyContent: "flex-start", padding: "100px 32px 40px",
+        overflowY: "auto"
       }}
       className="md:hidden"
       >
@@ -176,29 +177,54 @@ export function Navigation() {
             </li>
           ))}
         </ul>
-        <div style={{ borderTop: "1px solid var(--border-primary)", paddingTop: 28, marginTop: 20, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ borderTop: "1px solid var(--border-primary)", paddingTop: 28, marginTop: 20, display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <a
+              href={profile.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: "#666", textDecoration: "none", letterSpacing: ".15em", textTransform: "uppercase" }}
+            >
+              github/@{profile.githubUsername} ↗
+            </a>
+            <button
+              onClick={toggleTheme}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 11,
+                letterSpacing: ".15em",
+                color: "var(--text-muted)",
+                background: "none",
+                border: "none",
+                padding: "8px 0"
+              }}
+            >
+              [ {theme.toUpperCase()} ]
+            </button>
+          </div>
+          
+          {/* Hire badge for mobile */}
           <a
-            href={profile.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: "#666", textDecoration: "none", letterSpacing: ".15em", textTransform: "uppercase" }}
-          >
-            github/@{profile.githubUsername} ↗
-          </a>
-          <button
-            onClick={toggleTheme}
+            href="#contact"
+            onClick={() => setOpen(false)}
             style={{
+              display: "flex", justifyContent: "center", alignItems: "center", gap: 8,
+              background: "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0))",
+              border: "1px solid rgba(255,255,255,0.1)",
+              padding: "16px 24px",
+              borderRadius: "24px",
               fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 11,
-              letterSpacing: ".15em",
-              color: "var(--text-muted)",
-              background: "none",
-              border: "none",
-              padding: "8px 0"
+              fontSize: 14,
+              fontWeight: 700,
+              letterSpacing: ".1em",
+              textTransform: "uppercase",
+              color: "var(--text-primary)",
+              textDecoration: "none",
             }}
           >
-            [ {theme.toUpperCase()} ]
-          </button>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#3fb950", boxShadow: "0 0 6px #3fb950", display: "inline-block", animation: "pulseGlow 2s ease-in-out infinite" }} />
+            Hire Me
+          </a>
         </div>
       </div>
     </>

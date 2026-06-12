@@ -57,7 +57,7 @@ export function AboutSection() {
       </div>
 
       {/* ── Skills ── */}
-      <div className="reveal-item" style={{ transitionDelay: ".3s" }}>
+      <div className="reveal-item" style={{ transitionDelay: ".3s" }} id="skills">
         <div className="mt-12">
           <p className="font-mono text-xs text-[var(--text-faint)] tracking-widest uppercase mb-6 border-b border-[var(--border-primary)] pb-4">Tech Stack &amp; Skills</p>
           <div className="flex flex-wrap gap-3 mt-6">

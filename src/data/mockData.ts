@@ -43,7 +43,7 @@ export const profile = {
 export const navItems = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Work", href: "#projects" },
+  { label: "Work", href: "#work" },
   { label: "Journey", href: "#journey" },
   { label: "Terminal", href: "#terminal" },
   { label: "Stats", href: "#stats" },
