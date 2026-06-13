@@ -4,6 +4,7 @@ export type Project = Readonly<{
   subtitle: string;
   url: string;
   deployedUrl?: string;
+  videoUrl?: string;
   description: string;
   features: readonly string[];
   tags: readonly string[];
@@ -53,7 +54,7 @@ export const navItems = [
 export const skillGroups: readonly SkillGroup[] = [
   { title: "Languages", items: ["C++", "Python", "JavaScript", "TypeScript", "HTML", "CSS", "GDScript"] },
   { title: "MERN Stack", items: ["MongoDB", "Express.js", "React", "Node.js"] },
-  { title: "Tools & Core", items: ["Git", "GitHub", "Godot", "File I/O", "Authentication"] },
+  { title: "Tools & Core", items: ["Git", "GitHub", "Linux", "Ubuntu", "WSL", "Godot", "File I/O", "Authentication"] },
   { title: "Web Systems", items: ["APIs", "Maps Integration", "Dashboards", "Responsive UI"] },
 ];
 
@@ -64,6 +65,7 @@ export const projects: readonly Project[] = [
     subtitle: "Fake Medicine Detection & Healthcare Safety Platform",
     url: "https://github.com/qwertyuii7/MEDIGUARD_FINAL",
     deployedUrl: "https://mediguard-frontend-nine.vercel.app/",
+    videoUrl: "https://youtu.be/FQeNMtZWOcE?si=4mHjiPSWZQGPG4RO",
     description: "A public-health focused platform for identifying counterfeit medicine, reporting unsafe drugs, and locating verified nearby chemists.",
     features: [
       "Fake medicine identification engine",
@@ -245,7 +247,16 @@ export const milestoneCarouselItems = [
     title: "GDG Product Builder Day 2026",
     alt: "Google Developer Group Product Builder Day 2026",
   },
-
+  {
+    src: "/assets/events/sih-2025.jpeg",
+    title: "Smart India Hackathon 2025",
+    alt: "Mayank at Smart India Hackathon 2025",
+  },
+  {
+    src: "/assets/events/google-devfest-2025.jpeg",
+    title: "Google DevFest 2025",
+    alt: "Mayank at Google DevFest 2025",
+  },
 ] as const;
 
 export const terminalCommands = [

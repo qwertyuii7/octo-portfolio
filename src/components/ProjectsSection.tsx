@@ -145,7 +145,7 @@ export function ProjectsSection() {
               )}
 
               {/* Arrow links */}
-              <div className="relative z-10 mt-6 flex gap-6">
+              <div className="relative z-10 mt-6 flex flex-wrap gap-6">
                 {project.deployedUrl && (
                   <a
                     href={project.deployedUrl}
@@ -157,6 +157,19 @@ export function ProjectsSection() {
                   >
                     Live Preview
                     <span className="inline-block group-hover:translate-x-1 transition-transform">↗</span>
+                  </a>
+                )}
+                {project.videoUrl && (
+                  <a
+                    href={project.videoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest
+                               hover:opacity-80 transition-opacity"
+                    style={{ color: "#ff4444" }}
+                    data-cursor-hover=""
+                  >
+                    ▶ Watch Demo
                   </a>
                 )}
                 <a
