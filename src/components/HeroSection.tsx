@@ -77,7 +77,7 @@ export function HeroSection() {
         {/* Subtitle */}
         <div className="reveal-item" style={{ transitionDelay: ".35s" }}>
           <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.8, marginBottom: 28, maxWidth: 420 }}>
-            Senior Software Developer & MERN Stack Expert<br />
+            MERN Stack Developer & C++ Systems <br />
             Building in{" "}
             <span style={{ color: "var(--text-primary)" }}>MERN</span> ·{" "}
             <span style={{ color: "var(--text-primary)" }}>C++</span> ·{" "}
