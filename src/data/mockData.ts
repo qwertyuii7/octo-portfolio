@@ -24,7 +24,7 @@ export const profile = {
   name: "Mayank Chaudhary",
   location: "India",
   email: "mayankchaudharyetw123@gmail.com",
-  role: "Senior Software Developer & MERN Stack Expert building scalable web platforms, C++ systems, and DSA-focused tools.",
+  role: "MERN Stack Dev building scalable web platforms, C++ systems, and DSA-focused tools.",
   bio: "Coding in MERN Stack, C++, and Python with a focus on practical products, clean systems, and real-world utility.",
   githubUrl: "https://github.com/qwertyuii7",
   githubUsername: "qwertyuii7",
