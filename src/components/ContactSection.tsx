@@ -1,8 +1,8 @@
 import { profile } from "../data/mockData";
 
 const SOCIALS = [
-  { label: "GitHub",     url: profile.githubUrl,     handle: profile.githubUsername },
-  { label: "LeetCode",   url: profile.leetcodeUrl,   handle: profile.leetcodeUsername },
+  { label: "GitHub", url: profile.githubUrl, handle: profile.githubUsername },
+  { label: "LeetCode", url: profile.leetcodeUrl, handle: profile.leetcodeUsername },
   { label: "HackerRank", url: profile.hackerRankUrl, handle: profile.hackerRankUsername },
   { label: "Twitter / X", url: "https://x.com/rm_mayank7", handle: "rm_mayank7" },
 ];
@@ -41,7 +41,7 @@ export function ContactSection() {
           {/* Quick-action row */}
           <div className="flex flex-wrap gap-3 mt-8">
             <a
-              href="/resume.pdf"
+              href="/assets/Mayank_Chaudhary_Resume.docx"
               download
               className="btn-brutal px-6 py-3 font-mono text-xs uppercase tracking-widest"
               data-cursor-hover=""
