@@ -41,7 +41,7 @@ export function ContactSection() {
           {/* Quick-action row */}
           <div className="flex flex-wrap gap-3 mt-8">
             <a
-              href="/assets/Mayank_Chaudhary_Resume.docx"
+              href="/Mayank_Chaudhary_Resume.docx"
               download
               className="btn-brutal px-6 py-3 font-mono text-xs uppercase tracking-widest"
               data-cursor-hover=""
