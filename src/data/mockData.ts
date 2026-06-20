@@ -108,7 +108,8 @@ export const projects: readonly Project[] = [
     tags: ["HTML", "CSS", "JavaScript", "IoT", "Automation"],
     language: "HTML",
     updated: "May 2026",
-    inProgress: true,
+    deployedUrl: "https://smarthome-automation.vercel.app/",
+    imageUrl: "/assets/smarthome_preview.png",
   },
   {
     id: "04",
@@ -124,6 +125,7 @@ export const projects: readonly Project[] = [
     tags: ["TypeScript", "Web", "APIs", "Leaderboard"],
     language: "TypeScript",
     updated: "Mar 2026",
+    imageUrl: "/assets/developer_league_preview.png",
   },
   {
     id: "05",
