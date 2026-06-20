@@ -126,6 +126,7 @@ export const projects: readonly Project[] = [
     language: "TypeScript",
     updated: "Mar 2026",
     imageUrl: "/assets/developer_league_preview.png",
+    deployedUrl: "https://developer-league.vercel.app/",
   },
   {
     id: "05",
