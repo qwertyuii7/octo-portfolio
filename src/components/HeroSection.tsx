@@ -1,120 +1,83 @@
-import { useEffect, useRef, useState } from "react";
 import { profile } from "../data/mockData";
+import { MacbookScroll } from "./ui/macbook-scroll";
+import { FlipWords } from "./ui/flip-words";
 
 export function HeroSection() {
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const resetTransform = () => {
-      if (imgRef.current && window.matchMedia("(max-width: 768px)").matches) {
-        imgRef.current.style.transform = "";
-      }
-    };
-
-    let reqId: number | null = null;
-    let targetX = 0, targetY = 0;
-
-    const render = () => {
-      if (imgRef.current) {
-        imgRef.current.style.transform = `scale(1.03) translate(${targetX}px, ${targetY}px)`;
-      }
-    };
-
-    const move = (e: MouseEvent) => {
-      if (!imgRef.current) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (window.matchMedia("(max-width: 768px)").matches) return;
-      targetX = (e.clientX - window.innerWidth / 2) / 80;
-      targetY = (e.clientY - window.innerHeight / 2) / 80;
-      if (reqId) cancelAnimationFrame(reqId);
-      reqId = requestAnimationFrame(render);
-    };
-
-    resetTransform();
-    window.addEventListener("mousemove", move);
-    window.addEventListener("resize", resetTransform);
-    return () => {
-      window.removeEventListener("mousemove", move);
-      window.removeEventListener("resize", resetTransform);
-    };
-  }, []);
-
-  const [timeStr, setTimeStr] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const time = now.toLocaleTimeString("en-US", { 
-        timeZone: "Asia/Kolkata", 
-        hour12: true, 
-        hour: "numeric", 
-        minute: "2-digit", 
-        second: "2-digit" 
-      });
-      setTimeStr(`Lucknow, India · ${time} IST`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const [first, last] = profile.name.split(" ");
+
+  const flipWords = [
+    "web apps",
+    "AI tools",
+    "SaaS",
+    "utilities",
+    "Automation",
+  ];
 
   return (
     <section className="hero-section" id="hero">
+      <div className="hero-grid">
+        {/* ── LEFT COLUMN: MINIMAL COPY ────────────── */}
+        <div className="hero-left-content">
+          {/* Vertically centered main text block */}
+          <div className="hero-text-center-block">
+            {/* Small line above name */}
+            <div className="reveal-item" style={{ transitionDelay: ".1s" }}>
+              <p className="hero-greeting">
+                Hey ! I&apos;m
+              </p>
+            </div>
 
-      {/* ── LEFT: text content ──────────────────────────── */}
-      <div className="hero-left">
+            {/* Name */}
+            <div className="reveal-item" style={{ transitionDelay: ".2s" }}>
+              <h1 className="hero-name-minimal">
+                <span>{first}</span>
+                <span>{last}</span>
+              </h1>
+            </div>
 
-        {/* Name */}
-        <div className="reveal-item" style={{ transitionDelay: ".2s" }}>
-          <h1 className="hero-name" style={{ display: 'flex', flexDirection: 'column' }}>
-            <span>{first}</span>
-            <span style={{ fontSize: 'clamp(32px, 5.5vw, 84px)' }}>{last}</span>
-          </h1>
-        </div>
-
-        {/* Subtitle */}
-        <div className="reveal-item" style={{ transitionDelay: ".35s" }}>
-          <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.8, marginBottom: 28, maxWidth: 420 }}>
-            MERN Stack Developer & C++ Systems <br />
-            Building in{" "}
-            <span style={{ color: "var(--text-primary)" }}>MERN</span> ·{" "}
-            <span style={{ color: "var(--text-primary)" }}>C++</span> ·{" "}
-            <span style={{ color: "var(--text-primary)" }}>Python</span> ·{" "}
-            <span style={{ color: "var(--text-primary)" }}>TypeScript</span>
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            <a href="#work"    className="btn-brutal" style={{ padding: "11px 24px", fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: ".12em" }} data-cursor-hover="">View Projects ↓</a>
-            <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="btn-brutal" style={{ padding: "11px 24px", fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: ".12em" }} data-cursor-hover="">GitHub ↗</a>
-            <a href="#contact" className="btn-outline-sm" data-cursor-hover="">⬇ Resume</a>
+            {/* Tagline with FlipWords */}
+            <div className="reveal-item" style={{ transitionDelay: ".3s" }}>
+              <p className="hero-tagline-minimal">
+                <span className="hero-build-text">I build</span>
+                <FlipWords
+                  words={flipWords}
+                  duration={1500}
+                  className="hero-flip-word"
+                />
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Location */}
-        <div className="reveal-item" style={{ transitionDelay: ".5s", marginTop: 32 }}>
-          <p className="section-label" style={{ marginBottom: 0 }}>{timeStr || "Lucknow, India · UTC+5:30"}</p>
-        </div>
-      </div>
+        {/* ── RIGHT COLUMN: MACBOOK SHOWCASE ───────────────────── */}
+        <div className="hero-right-macbook reveal-item" style={{ transitionDelay: ".35s" }}>
+          {/* Desktop 3D Macbook Scroll */}
+          <div className="hero-macbook-desktop">
+            <MacbookScroll
+              src="/assets/github_profile_combined.png"
+              showGradient={true}
+              title={null}
+            />
+          </div>
 
-      {/* ── RIGHT: photo ────────────────────────────────── */}
-      <div className="hero-right reveal-item" style={{ transitionDelay: ".3s" }}>
-        <img
-          ref={imgRef}
-          src={profile.heroImage}
-          alt={profile.name}
-          className="hero-photo"
-        />
-        <div className="hero-photo-overlay" />
-
-        {/* Caption overlay bottom-right */}
-        <div style={{
-          position: "absolute", bottom: 24, right: 24,
-          fontFamily: "'IBM Plex Mono', monospace", fontSize: 9,
-          color: "rgba(239,239,239,.35)", letterSpacing: ".2em",
-          textTransform: "uppercase", zIndex: 10,
-        }}>
-          Mayank Chaudhary · {new Date().getFullYear()}
+          {/* Mobile Fallback: Clean Browser Mockup */}
+          <div className="hero-mobile-fallback">
+            <div className="hero-browser-frame">
+              <div className="hero-browser-bar">
+                <div className="hero-browser-dots">
+                  <span className="hero-dot hero-dot--red" />
+                  <span className="hero-dot hero-dot--yellow" />
+                  <span className="hero-dot hero-dot--green" />
+                </div>
+                <div className="hero-browser-url">github.com/qwertyuii7</div>
+              </div>
+              <img
+                src="/assets/github_profile_combined.png"
+                alt="Mayank Chaudhary GitHub Profile"
+                className="hero-browser-screenshot"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
