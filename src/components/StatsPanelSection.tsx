@@ -173,18 +173,7 @@ export function StatsPanelSection() {
               </a>
             ))}
           </div>
-          {/* Available now card */}
-          <div style={{ marginTop: 24, padding: "16px 20px", border: "1px solid rgba(63,185,80,.2)", background: "rgba(63,185,80,.04)", borderRadius: 2 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#3fb950", boxShadow: "0 0 6px #3fb950", display: "inline-block" }} />
-              <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#3fb950", letterSpacing: ".15em", textTransform: "uppercase" }}>
-                Available Now
-              </span>
-            </div>
-            <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: "#777", lineHeight: 1.6 }}>
-              Open to internships, freelance projects &amp; entry-level engineering roles.
-            </p>
-          </div>
+
         </div>
       </div>
     </section>
