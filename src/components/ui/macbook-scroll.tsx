@@ -2,6 +2,32 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MotionValue, motion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
+import "@google/model-viewer";
+
+declare global {
+  namespace React {
+    namespace JSX {
+      interface IntrinsicElements {
+        "model-viewer": React.DetailedHTMLProps<
+          React.HTMLAttributes<HTMLElement> & {
+            src?: string;
+            alt?: string;
+            "auto-rotate"?: boolean;
+            "camera-controls"?: boolean;
+            "shadow-intensity"?: string | number;
+            "camera-orbit"?: string;
+            "field-of-view"?: string;
+            "exposure"?: string | number;
+            "interaction-prompt"?: string;
+            orientation?: string;
+            style?: React.CSSProperties;
+          },
+          HTMLElement
+        >;
+      }
+    }
+  }
+}
 // Self-contained lightweight SVG icons to replace @tabler/icons-react dependency
 const IconBase = ({ children, className }: { children: React.ReactNode; className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -62,6 +88,38 @@ const IconWorld = ({ className }: { className?: string }) => (
 const IconCommand = ({ className }: { className?: string }) => (
   <IconBase className={className}><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></IconBase>
 );
+
+const MagneticMug = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+    const distanceX = (e.clientX - centerX) * 0.25;
+    const distanceY = (e.clientY - centerY) * 0.25;
+    setPosition({ x: distanceX, y: distanceY });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{ x: position.x, y: position.y, scale: position.x !== 0 || position.y !== 0 ? 1.08 : 1 }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className="w-full h-full cursor-grab active:cursor-grabbing"
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 
 export const MacbookScroll = ({
@@ -128,29 +186,49 @@ export const MacbookScroll = ({
         rotate={rotate}
         translate={translate}
       />
-      {/* Base area */}
-      <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-[var(--border-primary)]">
-        {/* above keyboard bar */}
-        <div className="relative h-10 w-full">
-          <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505]" />
+      {/* Base area wrapper for external desk objects like 3D coffee mug */}
+      <div className="relative">
+        {/* 3D Coffee Mug positioned to the left side of the keyboard / base area */}
+        <div className="absolute -left-[12rem] top-2 z-40 h-[11rem] w-[11rem] md:-left-[13.5rem] md:h-[12.5rem] md:w-[12.5rem] pointer-events-auto">
+          <MagneticMug>
+            <model-viewer
+              src="/assets/coffee_mug.glb"
+              alt="3D Coffee Mug"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+              camera-orbit="35deg 50deg 105%"
+              orientation="0deg 15deg 0deg"
+              interaction-prompt="none"
+              style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
+            ></model-viewer>
+          </MagneticMug>
         </div>
-        <div className="relative flex">
-          <div className="mx-auto h-full w-[10%] overflow-hidden">
-            <SpeakerGrid />
+
+        {/* Base area */}
+        <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-[var(--border-primary)]">
+          {/* above keyboard bar */}
+          <div className="relative h-10 w-full">
+            <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505]" />
           </div>
-          <div className="mx-auto h-full w-[80%]">
-            <Keypad />
+          <div className="relative flex">
+            <div className="mx-auto h-full w-[10%] overflow-hidden">
+              <SpeakerGrid />
+            </div>
+            <div className="mx-auto h-full w-[80%]">
+              <Keypad />
+            </div>
+            <div className="mx-auto h-full w-[10%] overflow-hidden">
+              <SpeakerGrid />
+            </div>
           </div>
-          <div className="mx-auto h-full w-[10%] overflow-hidden">
-            <SpeakerGrid />
-          </div>
+          <Trackpad />
+          <div className="absolute inset-x-0 bottom-0 mx-auto h-2 w-20 rounded-tl-3xl rounded-tr-3xl bg-gradient-to-t from-[var(--border-primary)] to-[#050505]" />
+          {showGradient && (
+            <div className="absolute inset-x-0 bottom-0 z-50 h-40 w-full bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] to-transparent"></div>
+          )}
+          {badge && <div className="absolute bottom-4 left-4">{badge}</div>}
         </div>
-        <Trackpad />
-        <div className="absolute inset-x-0 bottom-0 mx-auto h-2 w-20 rounded-tl-3xl rounded-tr-3xl bg-gradient-to-t from-[var(--border-primary)] to-[#050505]" />
-        {showGradient && (
-          <div className="absolute inset-x-0 bottom-0 z-50 h-40 w-full bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] to-transparent"></div>
-        )}
-        {badge && <div className="absolute bottom-4 left-4">{badge}</div>}
       </div>
     </div>
   );
