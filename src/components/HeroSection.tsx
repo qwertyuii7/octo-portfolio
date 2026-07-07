@@ -44,6 +44,7 @@ export function HeroSection() {
                   duration={1500}
                   className="hero-flip-word"
                 />
+                <span className="hero-build-text">&lt;/&gt;</span>
               </p>
             </div>
           </div>
