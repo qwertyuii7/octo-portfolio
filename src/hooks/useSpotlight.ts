@@ -12,8 +12,8 @@ export function useSpotlight() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
         target.closest('[data-cursor-hover]')
       ) {
         setIsHovering(true);
