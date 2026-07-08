@@ -23,7 +23,7 @@ export function AboutSection() {
         {/* ── BENTO GRID on Left Side ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-item">
-            
+
             {/* Bento Box 1: Bio Quote & profile.bio (Full Width across left side) */}
             <div className="bento-box md:col-span-2">
               <h2 className="text-xl md:text-2xl font-bold leading-snug text-[var(--text-primary)] mb-6 tracking-tight">

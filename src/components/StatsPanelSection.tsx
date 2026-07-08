@@ -4,7 +4,7 @@ import { useLiveStats } from "../hooks/useLiveStats";
 
 export function StatsPanelSection() {
   const { stats, isLoading } = useLiveStats(profile.githubUsername, profile.leetcodeUsername);
-  
+
   // Fallbacks
   const displayGithubStats = stats.github ? [
     { label: "Public Repos", value: stats.github.publicRepos.toString() },
@@ -14,7 +14,7 @@ export function StatsPanelSection() {
   ] : staticGithubStats;
 
   const displayLeetcodeTotal = stats.leetcode ? stats.leetcode.totalSolved : staticLeetcodeRows.reduce((s, r) => s + parseInt(r.value), 0);
-  
+
   const displayLeetcodeRows = stats.leetcode ? [
     { label: "Easy", value: stats.leetcode.easy.toString(), pct: stats.leetcode.easyPct },
     { label: "Medium", value: stats.leetcode.medium.toString(), pct: stats.leetcode.mediumPct },
