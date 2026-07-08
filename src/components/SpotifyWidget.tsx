@@ -11,6 +11,8 @@ export function SpotifyWidget() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const widgetRef = useRef<HTMLDivElement | null>(null);
+  const userManuallyStopped = useRef(false);
+  const hasStartedOnce = useRef(false);
 
   useEffect(() => {
     const audio = new Audio("/assets/sunflower.mp3");
@@ -42,6 +44,7 @@ export function SpotifyWidget() {
     const tryPlay = async () => {
       try {
         await audio.play();
+        hasStartedOnce.current = true;
         setIsPlaying(true);
         setHasInteracted(true);
       } catch {
@@ -51,20 +54,24 @@ export function SpotifyWidget() {
     tryPlay();
 
     const handleFirstInteraction = async () => {
-      if (audioRef.current && audioRef.current.paused && !hasInteracted) {
+      if (userManuallyStopped.current || hasStartedOnce.current) return;
+      if (audioRef.current && audioRef.current.paused) {
         try {
           if (audioRef.current.currentTime < 59) {
             audioRef.current.currentTime = 59;
           }
           await audioRef.current.play();
+          hasStartedOnce.current = true;
           setIsPlaying(true);
           setHasInteracted(true);
+          window.removeEventListener("click", handleFirstInteraction);
+          window.removeEventListener("keydown", handleFirstInteraction);
         } catch {}
       }
     };
 
-    window.addEventListener("click", handleFirstInteraction, { once: true });
-    window.addEventListener("keydown", handleFirstInteraction, { once: true });
+    window.addEventListener("click", handleFirstInteraction);
+    window.addEventListener("keydown", handleFirstInteraction);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
@@ -81,8 +88,12 @@ export function SpotifyWidget() {
     e.stopPropagation();
     if (!audioRef.current) return;
     if (isPlaying) {
+      userManuallyStopped.current = true;
+      hasStartedOnce.current = true;
       audioRef.current.pause();
     } else {
+      userManuallyStopped.current = false;
+      hasStartedOnce.current = true;
       if (!hasInteracted && audioRef.current.currentTime < 59) {
         audioRef.current.currentTime = 59;
       }
