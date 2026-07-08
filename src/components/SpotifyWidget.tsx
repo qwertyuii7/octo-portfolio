@@ -41,45 +41,41 @@ export function SpotifyWidget() {
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
 
+    const EVENTS = ["click", "keydown", "pointerdown", "touchstart", "scroll", "mousemove", "wheel", "focus"];
+
     const tryPlay = async () => {
+      if (userManuallyStopped.current || hasStartedOnce.current) return;
       try {
+        if (audio.currentTime < 59) {
+          audio.currentTime = 59;
+        }
         await audio.play();
         hasStartedOnce.current = true;
         setIsPlaying(true);
         setHasInteracted(true);
+        EVENTS.forEach(evt => window.removeEventListener(evt, handleFirstInteraction));
       } catch {
         setIsPlaying(false);
       }
     };
+
+    audio.addEventListener("canplay", tryPlay);
     tryPlay();
 
     const handleFirstInteraction = async () => {
       if (userManuallyStopped.current || hasStartedOnce.current) return;
-      if (audioRef.current && audioRef.current.paused) {
-        try {
-          if (audioRef.current.currentTime < 59) {
-            audioRef.current.currentTime = 59;
-          }
-          await audioRef.current.play();
-          hasStartedOnce.current = true;
-          setIsPlaying(true);
-          setHasInteracted(true);
-          window.removeEventListener("click", handleFirstInteraction);
-          window.removeEventListener("keydown", handleFirstInteraction);
-        } catch {}
-      }
+      await tryPlay();
     };
 
-    window.addEventListener("click", handleFirstInteraction);
-    window.addEventListener("keydown", handleFirstInteraction);
+    EVENTS.forEach(evt => window.addEventListener(evt, handleFirstInteraction, { passive: true }));
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
-      window.removeEventListener("click", handleFirstInteraction);
-      window.removeEventListener("keydown", handleFirstInteraction);
+      audio.removeEventListener("canplay", tryPlay);
+      EVENTS.forEach(evt => window.removeEventListener(evt, handleFirstInteraction));
       audio.pause();
     };
   }, []);
