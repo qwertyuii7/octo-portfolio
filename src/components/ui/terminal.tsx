@@ -94,7 +94,7 @@ const KEY_SOUNDS_UP: Record<string, [number, number]> = {
   Enter: [19180, 100],
 };
 
-function useAudio(enabled: boolean) {
+export function useAudio(enabled: boolean) {
   const ctxRef = useRef<AudioContext | null>(null);
   const bufferRef = useRef<AudioBuffer | null>(null);
   const readyRef = useRef(false);
