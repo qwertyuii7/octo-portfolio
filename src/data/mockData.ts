@@ -274,14 +274,31 @@ export const terminalCommands = [
 ] as const;
 
 export const terminalCommandResponses: Record<string, string> = {
-  help:          "Commands: help · whoami · stack · projects · github · leetcode · matrix · clear",
-  whoami:        "Mayank Chaudhary — CS Engineering Student @ Lucknow University.\nBuilds in C++, Python & Web. Open to freelance work.",
-  stack:         "Languages : C++, Python, TypeScript, JavaScript\nWeb       : React, Vite, Node.js, REST APIs\nTools     : Git, Linux, Figma",
-  projects:      "1. MEDIGUARD       — Healthcare safety platform\n2. DEVELOPER LEAGUE — Global dev ranking system\n3. SMART HOME AUTO — Command-driven home mgmt\n4. BANKING SYSTEM  — C++ terminal core banking\n5. SECURE AUTH     — C++ authentication engine",
+  help:          "Available Commands:\n  • whoami    — Short bio & current focus\n  • stack     — Technical skills & technologies\n  • projects  — Overview of shipped products\n  • skills    — Core engineering competencies\n  • contact   — Direct communication channels\n  • about     — Quick background & experience\n  • github    — Visit my GitHub profile (@qwertyuii7)\n  • leetcode  — Visit my LeetCode stats (@chaudharymayank)\n  • matrix    — Trigger the full-page Matrix effect\n  • ls        — List portfolio directories & files\n  • uname -a  — System kernel & OS information\n  • cat bio   — Display full biography\n  • date      — Current system time & timestamp\n  • clear     — Clear terminal screen",
+  whoami:        "Mayank Chaudhary — CS Engineering Student @ Lucknow University.\nBuilds in C++, Python & Web. Open to freelance work and exciting opportunities.",
+  stack:         "Languages : C++, Python, TypeScript, JavaScript, HTML/CSS\nWeb       : React, Vite, Node.js, Tailwind CSS, REST APIs\nTools     : Git, GitHub, Linux/Ubuntu, Figma, VS Code\nDatabase  : SQL, File-based persistent storage",
+  projects:      "1. MEDIGUARD       — Healthcare safety & emergency response platform\n2. DEVELOPER LEAGUE — Global dev ranking & analytical dashboard\n3. SMART HOME AUTO — Command-driven home automation interface\n4. BANKING SYSTEM  — C++ terminal-based core banking engine\n5. SECURE AUTH     — C++ authentication & file persistence system",
+  skills:        "• Problem Solving & Data Structures (C++)\n• Full-Stack Web Architecture (React, Vite, TS)\n• Systems Engineering & Clean Object-Oriented Design\n• UI/UX Design Engineering (Dark-mode, Glassmorphism)",
+  contact:       "Email    : contact@mayankchaudhary.dev\nGitHub   : github.com/qwertyuii7\nLeetCode : leetcode.com/u/chaudharymayank/\nLocation : Lucknow, India · Open for Freelance",
+  about:         "CS Engineering Student entering 3rd year at Lucknow University.\nPassionate about low-level C++ systems and modern, high-performance web applications.",
   github:        "→ Redirecting to github.com/qwertyuii7 ...",
   leetcode:      "→ Redirecting to leetcode.com/u/chaudharymayank/ ...",
   matrix:        "MATRIX_MODE=ON",
   clear:         "",
+  ls:            "drwxr-xr-x  2 mayank mayank  4096 Jul 08 17:30 projects/\ndrwxr-xr-x  2 mayank mayank  4096 Jul 08 17:30 skills/\ndrwxr-xr-x  2 mayank mayank  4096 Jul 08 17:30 achievements/\n-rw-r--r--  1 mayank mayank  1337 Jul 08 17:30 bio.txt\n-rw-r--r--  1 mayank mayank   512 Jul 08 17:30 resume.pdf",
+  "uname -a":    "Linux portfolio-os 6.8.0-mayank #1 SMP PREEMPT_DYNAMIC Mon Jul 8 17:30:00 UTC 2026 x86_64 GNU/Linux",
+  uname:         "Linux portfolio-os 6.8.0-mayank x86_64",
+  date:          new Date().toUTCString(),
+  pwd:           "/home/mayank/portfolio",
+  "cat bio":     "Mayank Chaudhary is a dedicated computer science engineering student based in Lucknow, India. Known for building clean terminal apps in C++ and state-of-the-art web applications in React & TypeScript.",
+  "cat bio.txt": "Mayank Chaudhary is a dedicated computer science engineering student based in Lucknow, India. Known for building clean terminal apps in C++ and state-of-the-art web applications in React & TypeScript.",
+  top:           "Tasks: 42 total, 1 running, 41 sleeping\nCPU usage: 1.2% us, 0.4% sy, 98.4% id\nMem: 16384M total, 4120M used, 12264M free\nPID USER     PR  NI    VIRT    RES  %CPU %MEM     TIME+ COMMAND\n  1 mayank   20   0  152704  45024   0.8  0.3   0:12.45 portfolio-os",
+  df:            "Filesystem     1K-blocks      Used Available Use% Mounted on\n/dev/root      102400000  24580000  77820000  24% /\ntmpfs            8192000      4120   8187880   1% /run",
+  free:          "               total        used        free      shared  buff/cache   available\nMem:        16384000     4120000    10264000      128000     2000000    12000000\nSwap:        4194304           0     4194304",
+  ifconfig:      "eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500\n        inet 192.168.1.108  netmask 255.255.255.0  broadcast 192.168.1.255\n        RX packets 1337  bytes 1048576 (1.0 MiB)\n        TX packets 420   bytes 512000 (500.0 KiB)",
+  ping:          "PING mayankchaudhary.dev (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.245 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.198 ms\n--- mayankchaudhary.dev ping statistics ---\n2 packets transmitted, 2 packets received, 0.0% packet loss",
+  sudo:          "mayank is already running as root/superuser. All permissions granted.",
+  history:       "1  help\n2  whoami\n3  stack\n4  projects\n5  skills\n6  contact\n7  matrix",
 };
 
 export const aboutHighlights = [
