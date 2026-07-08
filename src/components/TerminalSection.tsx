@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { terminalCommandResponses as COMMANDS } from "../data/mockData";
+import { useAudio } from "./ui/terminal";
 
 type Line = { type: "cmd" | "out"; text: string };
 
 export function TerminalSection() {
-  const [history, setHistory]     = useState<Line[]>([{ type: "out", text: "Welcome. Type 'help' to see available commands." }]);
+  const { down, up } = useAudio(true);
+  const [history, setHistory]     = useState<Line[]>([{ type: "out", text: "Welcome to Mayank's Portfolio OS v2.0 (x86_64-pc-linux-gnu)\nType 'help' to see all available commands." }]);
   const [input, setInput]         = useState("");
   const [matrixActive, setMatrix] = useState(false);
   const [matrixFlash, setFlash]   = useState(false);
@@ -19,9 +21,11 @@ export function TerminalSection() {
   const flashReq   = useRef<number | null>(null);
   const isVisible  = useRef(true);
 
-  // Auto-scroll
+  // Auto-scroll smoothly on history update or new commands
   useEffect(() => {
-    bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight });
+    if (bodyRef.current) {
+      bodyRef.current.scrollTo({ top: bodyRef.current.scrollHeight, behavior: "smooth" });
+    }
   }, [history]);
 
   // Auto-type on reveal and track visibility
@@ -185,7 +189,7 @@ export function TerminalSection() {
           <span className="t-dot t-dot-red" />
           <span className="t-dot t-dot-yellow" />
           <span className="t-dot t-dot-green" />
-          <span className="terminal-title">guest@mayank-portfolio: ~</span>
+          <span className="terminal-title">mayank@portfolio: ~ (zsh)</span>
         </div>
 
         {/* Output */}
@@ -195,23 +199,38 @@ export function TerminalSection() {
           onClick={() => inputRef.current?.focus()}
         >
           {history.map((line, i) => (
-            <div key={i} className={`mt-1 ${line.type === "out" ? "text-[var(--text-muted)]" : "text-[var(--text-primary)]"}`}>
-              {line.type === "cmd" && <span className="terminal-prompt-char mr-2">$</span>}
+            <div key={i} className={`mt-1.5 ${line.type === "out" ? "text-[var(--text-muted)]" : "text-[var(--text-primary)]"}`}>
+              {line.type === "cmd" && (
+                <span className="mr-2.5 font-semibold">
+                  <span className="text-[#27c93f]">mayank@portfolio</span>:<span className="text-sky-400">~</span>$
+                </span>
+              )}
               {line.text.split("\n").map((l, j, arr) => (
                 <span key={j}>{l}{j < arr.length - 1 && <br />}</span>
               ))}
             </div>
           ))}
 
-          <div className="terminal-input-row mt-2">
-            <span className="terminal-prompt-char">$</span>
+          <div className="terminal-input-row mt-3">
+            <span className="mr-2.5 font-semibold select-none">
+              <span className="text-[#27c93f]">mayank@portfolio</span>:<span className="text-sky-400">~</span>$
+            </span>
             <input
               ref={inputRef}
               type="text"
-              className="terminal-input"
+              className="terminal-input flex-1 bg-transparent border-none outline-none text-[var(--text-primary)] font-mono text-xs sm:text-[13px]"
               value={input}
               onChange={e => setInput(e.target.value)}
-              onKeyDown={e => { if (e.key === "Enter") { run(input); setInput(""); } }}
+              onKeyDown={e => {
+                down(e.key);
+                if (e.key === "Enter") {
+                  setTimeout(() => up(e.key), 50);
+                  run(input);
+                  setInput("");
+                } else {
+                  setTimeout(() => up(e.key), 40);
+                }
+              }}
               spellCheck={false}
               autoComplete="off"
               autoCapitalize="off"
