@@ -7,6 +7,7 @@ import { JourneySection }   from "./components/JourneySection";
 import { Navigation }       from "./components/Navigation";
 import { ProjectsSection }  from "./components/ProjectsSection";
 import { TerminalSection }  from "./components/TerminalSection";
+import { SpotifyWidget }    from "./components/SpotifyWidget";
 import { useBootloader }    from "./hooks/useBootloader";
 import { useReveal }        from "./hooks/useReveal";
 import { useSpotlight }     from "./hooks/useSpotlight";
@@ -55,6 +56,9 @@ export function App() {
 
       {/* ── NAVIGATION ──────────────────────────────────── */}
       <Navigation />
+
+      {/* ── SPOTIFY BG MUSIC WIDGET ─────────────────────── */}
+      <SpotifyWidget />
 
       {/* ── SITE ────────────────────────────────────────── */}
       <main style={{ marginTop: 64, margin: "64px 20px 20px", border: "1px solid var(--border-primary)" }}>
