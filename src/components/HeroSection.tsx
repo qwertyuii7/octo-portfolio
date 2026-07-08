@@ -1,5 +1,6 @@
 import { profile } from "../data/mockData";
 import { MacbookScroll } from "./ui/macbook-scroll";
+import { ContainerScroll } from "./ui/container-scroll-animation";
 import { FlipWords } from "./ui/flip-words";
 
 export function HeroSection() {
@@ -11,6 +12,7 @@ export function HeroSection() {
     "SaaS",
     "utilities",
     "Automation",
+    "UI & UX",
   ];
 
   return (
@@ -61,23 +63,16 @@ export function HeroSection() {
             />
           </div>
 
-          {/* Mobile Fallback: Clean Browser Mockup */}
+          {/* Mobile Fallback: ContainerScroll Mockup */}
           <div className="hero-mobile-fallback">
-            <div className="hero-browser-frame">
-              <div className="hero-browser-bar">
-                <div className="hero-browser-dots">
-                  <span className="hero-dot hero-dot--red" />
-                  <span className="hero-dot hero-dot--yellow" />
-                  <span className="hero-dot hero-dot--green" />
-                </div>
-                <div className="hero-browser-url">github.com/qwertyuii7</div>
-              </div>
+            <ContainerScroll titleComponent={null}>
               <img
                 src="/assets/github_profile_combined.png"
                 alt="Mayank Chaudhary GitHub Profile"
-                className="hero-browser-screenshot"
+                className="w-full h-auto object-contain rounded-2xl shadow-2xl"
+                draggable={false}
               />
-            </div>
+            </ContainerScroll>
           </div>
         </div>
       </div>
