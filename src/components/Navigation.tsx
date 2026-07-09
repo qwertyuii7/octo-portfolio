@@ -39,7 +39,7 @@ function NavLogo({ visible }: { visible?: boolean }) {
   );
 }
 
-function NavModeButton({
+function NavRightControls({
   visible,
   theme,
   toggleTheme,
@@ -51,31 +51,78 @@ function NavModeButton({
   return (
     <AnimatePresence mode="popLayout">
       {!visible && (
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, width: 0, marginRight: 0 }}
           animate={{ opacity: 1, width: "auto", marginRight: 176 }}
           exit={{ opacity: 0, width: 0, marginRight: 0 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
-          onClick={toggleTheme}
-          style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 11,
-            letterSpacing: ".15em",
-            color: "var(--text-muted)",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "8px 0",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-          }}
-          className="relative z-20 shrink-0"
+          className="flex items-center gap-4 overflow-hidden whitespace-nowrap shrink-0 relative z-20"
         >
-          <span className="hidden xl:inline">[ MODE: {theme.toUpperCase()} ]</span>
-          <span className="inline xl:hidden">[ MODE ]</span>
-        </motion.button>
+          <button
+            onClick={toggleTheme}
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 11,
+              letterSpacing: ".15em",
+              color: "var(--text-muted)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px 0",
+            }}
+            className="hover:text-[var(--text-primary)] transition-colors"
+          >
+            <span className="hidden xl:inline">[ MODE: {theme.toUpperCase()} ]</span>
+            <span className="inline xl:hidden">[ MODE ]</span>
+          </button>
+
+          <a
+            href="#contact"
+            className="hidden md:flex items-center justify-center gap-2 px-4 py-1.5 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] font-mono text-xs font-bold uppercase tracking-widest rounded-none shadow-[3px_3px_0px_0px_var(--border-primary)] hover:shadow-[5px_5px_0px_0px_var(--card-accent)] hover:-translate-y-0.5 transition-all"
+          >
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "0px",
+                background: "#3fb950",
+                boxShadow: "0 0 8px #3fb950",
+                display: "inline-block",
+                animation: "pulseGlow 2s ease-in-out infinite",
+              }}
+            />
+            Let&apos;s Talk ↗
+          </a>
+        </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+function NavModeButtonMobile({
+  theme,
+  toggleTheme,
+}: {
+  theme: string;
+  toggleTheme: () => void;
+}) {
+  return (
+    <button
+      onClick={toggleTheme}
+      style={{
+        fontFamily: "'IBM Plex Mono', monospace",
+        fontSize: 11,
+        letterSpacing: ".15em",
+        color: "var(--text-muted)",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        padding: "8px 0",
+      }}
+      className="hover:text-[var(--text-primary)] transition-colors relative z-20 shrink-0"
+    >
+      [ MODE ]
+    </button>
   );
 }
 
@@ -215,7 +262,7 @@ function SideNavDrawer({
                 </a>
               </div>
 
-              {/* Hire Me CTA Button */}
+              {/* Let's Talk CTA Button (Sharp Corner Box) */}
               <a
                 href="#contact"
                 onClick={onClose}
@@ -225,9 +272,9 @@ function SideNavDrawer({
                   alignItems: "center",
                   gap: 10,
                   background: "var(--bg-secondary)",
-                  border: "1px solid var(--border-primary)",
+                  border: "2px solid var(--border-primary)",
                   padding: "14px 20px",
-                  borderRadius: "16px",
+                  borderRadius: "0px",
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: 13,
                   fontWeight: 700,
@@ -236,20 +283,20 @@ function SideNavDrawer({
                   color: "var(--text-primary)",
                   textDecoration: "none",
                 }}
-                className="shadow-lg hover:border-[var(--card-accent)] transition-colors"
+                className="shadow-[4px_4px_0px_0px_var(--border-primary)] hover:shadow-[6px_6px_0px_0px_var(--card-accent)] hover:-translate-y-0.5 transition-all"
               >
                 <span
                   style={{
                     width: 8,
                     height: 8,
-                    borderRadius: "50%",
+                    borderRadius: "0px",
                     background: "#3fb950",
                     boxShadow: "0 0 8px #3fb950",
                     display: "inline-block",
                     animation: "pulseGlow 2s ease-in-out infinite",
                   }}
                 />
-                Hire Me
+                Let&apos;s Talk ↗
               </a>
             </div>
           </motion.div>
@@ -300,7 +347,7 @@ export function Navigation() {
       <NavBody className="transition-all duration-300">
         <NavLogo />
         <NavItems items={formattedNavItems} />
-        <NavModeButton theme={theme} toggleTheme={toggleTheme} />
+        <NavRightControls theme={theme} toggleTheme={toggleTheme} />
       </NavBody>
 
       {/* ── MOBILE RESIZABLE NAVBAR ── */}
@@ -308,7 +355,7 @@ export function Navigation() {
         <MobileNavHeader>
           <NavLogo />
           <div className="flex items-center gap-3">
-            <NavModeButton theme={theme} toggleTheme={toggleTheme} />
+            <NavModeButtonMobile theme={theme} toggleTheme={toggleTheme} />
             <MobileNavToggle isOpen={open} onClick={() => setOpen(!open)} />
           </div>
         </MobileNavHeader>

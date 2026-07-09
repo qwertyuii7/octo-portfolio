@@ -31,7 +31,7 @@ export function HeroSection() {
 
             {/* Name */}
             <div className="reveal-item" style={{ transitionDelay: ".2s" }}>
-              <h1 className="hero-name-minimal">
+              <h1 className="hero-name-minimal cursor-none" data-cursor="hero-name">
                 <span>{first}</span>
                 <span>{last}</span>
               </h1>
@@ -48,6 +48,27 @@ export function HeroSection() {
                 />
                 <span className="hero-build-text">&lt;/&gt;</span>
               </p>
+            </div>
+
+            {/* Sharp Corner Box CTA Button (Hidden on big devices where navbar has it, shown on mobile/small devices) */}
+            <div className="reveal-item mt-6 sm:mt-8 md:hidden" style={{ transitionDelay: ".4s" }}>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] font-mono text-xs sm:text-sm font-bold uppercase tracking-widest rounded-none shadow-[5px_5px_0px_0px_var(--border-primary)] hover:shadow-[8px_8px_0px_0px_var(--card-accent)] hover:-translate-y-1 transition-all"
+              >
+                <span
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "0px",
+                    background: "#3fb950",
+                    boxShadow: "0 0 8px #3fb950",
+                    display: "inline-block",
+                    animation: "pulseGlow 2s ease-in-out infinite",
+                  }}
+                />
+                Let&apos;s Talk ↗
+              </a>
             </div>
           </div>
         </div>
