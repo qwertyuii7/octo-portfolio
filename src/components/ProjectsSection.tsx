@@ -66,7 +66,7 @@ export function ProjectsSection() {
             <motion.div
               layoutId={`card-${active.name}-${id}`}
               ref={ref}
-              className="w-full max-w-lg h-full sm:h-fit max-h-[70vh] sm:max-h-[70vh] flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl z-[100] border"
+              className="w-full max-w-lg h-full sm:h-fit max-h-[70vh] sm:max-h-[70vh] flex flex-col rounded-none overflow-hidden shadow-[16px_16px_0px_0px_var(--border-primary)] z-[100] border-2"
               style={{
                 backgroundColor: "var(--card-surface)",
                 borderColor: "var(--border-primary)",
@@ -74,7 +74,7 @@ export function ProjectsSection() {
             >
               <motion.div
                 layoutId={`image-${active.name}-${id}`}
-                className="relative border-b shrink-0"
+                className="relative border-b-2 shrink-0"
                 style={{
                   backgroundColor: "var(--bg-secondary)",
                   borderColor: "var(--border-primary)",
@@ -86,7 +86,7 @@ export function ProjectsSection() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                  className="flex absolute top-3 right-3 sm:top-4 sm:right-4 items-center justify-center rounded-full h-8 w-8 sm:h-9 sm:w-9 z-[101] border transition-all shadow-lg hover:scale-105"
+                  className="flex absolute top-3 right-3 sm:top-4 sm:right-4 items-center justify-center rounded-none h-8 w-8 sm:h-9 sm:w-9 z-[101] border-2 transition-all shadow-[3px_3px_0px_0px_var(--border-primary)] hover:shadow-[5px_5px_0px_0px_var(--card-accent)] hover:-translate-y-0.5"
                   style={{
                     backgroundColor: "var(--card-surface)",
                     borderColor: "var(--border-primary)",
@@ -134,7 +134,7 @@ export function ProjectsSection() {
                         {active.name}
                       </motion.h3>
                       {active.inProgress && (
-                        <span className="font-mono text-[9px] text-[#ffbd2e] bg-[#ffbd2e]/10 border border-[#ffbd2e]/30 px-2 py-0.5 rounded uppercase tracking-widest animate-pulse">
+                        <span className="font-mono text-[9px] text-[#ffbd2e] bg-[#ffbd2e]/10 border border-[#ffbd2e]/30 px-2 py-0.5 rounded-none uppercase tracking-widest animate-pulse">
                           In Progress
                         </span>
                       )}
@@ -154,9 +154,10 @@ export function ProjectsSection() {
                         href={active.deployedUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex-1 sm:flex-none text-center px-4 py-2 text-xs rounded-full font-mono font-bold uppercase tracking-widest transition-opacity shadow-md"
+                        className="flex-1 sm:flex-none text-center px-4 py-2 text-xs rounded-none font-mono font-bold uppercase tracking-widest transition-all border-2 shadow-[4px_4px_0px_0px_var(--border-primary)] hover:shadow-[6px_6px_0px_0px_var(--card-accent)] hover:-translate-y-1"
                         style={{
                           backgroundColor: "var(--card-accent)",
+                          borderColor: "var(--card-accent)",
                           color: "var(--bg-primary)",
                         }}
                       >
@@ -167,7 +168,7 @@ export function ProjectsSection() {
                       href={active.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex-1 sm:flex-none text-center px-4 py-2 text-xs rounded-full font-mono font-bold uppercase tracking-widest border transition-opacity"
+                      className="flex-1 sm:flex-none text-center px-4 py-2 text-xs rounded-none font-mono font-bold uppercase tracking-widest border-2 transition-all shadow-[4px_4px_0px_0px_var(--border-primary)] hover:shadow-[6px_6px_0px_0px_var(--card-accent)] hover:-translate-y-1"
                       style={{
                         backgroundColor: "var(--bg-secondary)",
                         borderColor: "var(--border-primary)",
@@ -194,7 +195,7 @@ export function ProjectsSection() {
                         {active.features.map((feature, idx) => (
                           <li
                             key={idx}
-                            className="flex items-start gap-2 text-xs p-2.5 rounded-lg border"
+                            className="flex items-start gap-2 text-xs p-2.5 rounded-none border shadow-[2px_2px_0px_0px_var(--border-primary)]"
                             style={{
                               backgroundColor: "var(--bg-secondary)",
                               borderColor: "var(--border-primary)",
@@ -215,7 +216,7 @@ export function ProjectsSection() {
                       {active.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="font-mono text-[11px] px-2.5 py-1 rounded border tracking-wide uppercase"
+                          className="font-mono text-[11px] px-2.5 py-1 rounded-none border tracking-wide uppercase shadow-[2px_2px_0px_0px_var(--border-primary)]"
                           style={{
                             backgroundColor: "var(--bg-secondary)",
                             borderColor: "var(--border-primary)",
@@ -254,7 +255,7 @@ export function ProjectsSection() {
               layoutId={`card-${project.name}-${id}`}
               key={project.id}
               onClick={() => setActive(project)}
-              className="p-3.5 sm:p-5 flex flex-row justify-between items-center gap-3 sm:gap-6 border rounded-xl sm:rounded-2xl cursor-pointer transition-all group shadow-sm hover:shadow-md"
+              className="p-4 sm:p-6 flex flex-row justify-between items-center gap-3 sm:gap-6 border-2 rounded-none cursor-pointer transition-all duration-300 group transform-gpu [transform-style:preserve-3d] hover:-translate-y-2 hover:border-[var(--card-accent)] shadow-[6px_6px_0px_0px_var(--border-primary)] hover:shadow-[10px_10px_0px_0px_var(--card-accent)] relative"
               style={{
                 backgroundColor: "var(--card-surface)",
                 borderColor: "var(--border-primary)",
@@ -263,25 +264,27 @@ export function ProjectsSection() {
               <div className="flex gap-3 sm:gap-5 flex-row items-center min-w-0 flex-1">
                 <motion.div
                   layoutId={`image-${project.name}-${id}`}
-                  className="h-16 w-20 sm:h-24 sm:w-40 rounded-lg sm:rounded-xl overflow-hidden border shrink-0 flex items-center justify-center relative"
+                  className="h-16 w-20 sm:h-24 sm:w-40 rounded-none overflow-hidden border-2 shrink-0 flex items-center justify-center relative shadow-[3px_3px_0px_0px_var(--border-primary)]"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     borderColor: "var(--border-primary)",
                   }}
                 >
-                  {project.imageUrl ? (
+                  {/* Default view: show project ID & language */}
+                  <div className={`flex flex-col items-center justify-center p-1 sm:p-2 text-center transition-opacity duration-300 ${project.imageUrl ? "group-hover:opacity-0" : ""}`}>
+                    <span className="font-mono text-xl sm:text-3xl font-black" style={{ color: "var(--text-faint)" }}>{project.id}</span>
+                    <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{project.language}</span>
+                  </div>
+
+                  {/* Reveal image ONLY when someone hovers over the project card */}
+                  {project.imageUrl && (
                     <img
                       width={300}
                       height={200}
                       src={project.imageUrl}
                       alt={project.name}
-                      className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      className="absolute inset-0 h-full w-full object-cover object-top opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none"
                     />
-                  ) : (
-                    <div className="flex flex-col items-center justify-center p-1 sm:p-2 text-center">
-                      <span className="font-mono text-xl sm:text-3xl font-black" style={{ color: "var(--text-faint)" }}>{project.id}</span>
-                      <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{project.language}</span>
-                    </div>
                   )}
                 </motion.div>
 
@@ -296,7 +299,7 @@ export function ProjectsSection() {
                       {project.name}
                     </motion.h3>
                     {project.inProgress && (
-                      <span className="font-mono text-[9px] text-[#ffbd2e] bg-[#ffbd2e]/10 border border-[#ffbd2e]/30 px-2 py-0.5 rounded uppercase tracking-widest animate-pulse">
+                      <span className="font-mono text-[9px] text-[#ffbd2e] bg-[#ffbd2e]/10 border border-[#ffbd2e]/30 px-2 py-0.5 rounded-none uppercase tracking-widest animate-pulse">
                         In Progress
                       </span>
                     )}
@@ -312,7 +315,7 @@ export function ProjectsSection() {
                     {project.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded border uppercase tracking-wider"
+                        className="font-mono text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-none border uppercase tracking-wider"
                         style={{
                           backgroundColor: "var(--bg-secondary)",
                           borderColor: "var(--border-primary)",
@@ -329,7 +332,7 @@ export function ProjectsSection() {
               <div className="flex items-center justify-end shrink-0 pl-1">
                 <motion.button
                   layoutId={`button-${project.name}-${id}`}
-                  className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs rounded-full font-mono font-bold border transition-all uppercase tracking-widest shrink-0 shadow-sm group-hover:scale-105"
+                  className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs rounded-none font-mono font-bold border-2 transition-all duration-300 uppercase tracking-widest shrink-0 shadow-[3px_3px_0px_0px_var(--border-primary)] group-hover:shadow-[5px_5px_0px_0px_var(--card-accent)] group-hover:-translate-y-1"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     borderColor: "var(--border-primary)",

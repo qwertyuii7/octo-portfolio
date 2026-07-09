@@ -180,8 +180,9 @@ export function TerminalSection() {
         </div>
       )}
 
-      <div className={`terminal-shell reveal-item ${matrixActive ? "matrix-active" : ""}`}>
-        {/* Subtle in-terminal matrix bg */}
+      <div className="terminal-3d-wrapper mt-8 pb-10">
+        <div className={`terminal-shell floating-3d reveal-item ${matrixActive ? "matrix-active" : ""}`}>
+          {/* Subtle in-terminal matrix bg */}
         <canvas ref={canvasRef} id="matrix-canvas" />
 
         {/* Title bar */}
@@ -238,6 +239,9 @@ export function TerminalSection() {
             />
           </div>
         </div>
+      </div>
+      {/* Small rounded shadow on the ground beneath it */}
+      <div className="terminal-ground-shadow" />
       </div>
 
       <p className="font-mono text-xs text-[var(--text-muted)] mt-4 tracking-widest">
