@@ -8,6 +8,7 @@ import { Navigation }       from "./components/Navigation";
 import { ProjectsSection }  from "./components/ProjectsSection";
 import { TerminalSection }  from "./components/TerminalSection";
 import { SpotifyWidget }    from "./components/SpotifyWidget";
+import { FooterRevealSection } from "./components/FooterRevealSection";
 import { useBootloader }    from "./hooks/useBootloader";
 import { useReveal }        from "./hooks/useReveal";
 import { useSpotlight }     from "./hooks/useSpotlight";
@@ -23,7 +24,7 @@ const BOOT_LINES = [
 ];
 
 export function App() {
-  const { position, isHovering } = useSpotlight();
+  const { position, isHovering, cursorMode } = useSpotlight();
   const { booting, linesVisible } = useBootloader();
   useReveal();
 
@@ -49,7 +50,7 @@ export function App() {
       <div className="noise-overlay" aria-hidden />
       <div className="spotlight"     aria-hidden />
       <div
-        className={`custom-cursor ${isHovering ? "hover" : ""}`}
+        className={`custom-cursor ${cursorMode === "hero-name" ? "hero-name" : cursorMode === "hover" ? "hover" : ""}`}
         style={{ left: position.x, top: position.y }}
         aria-hidden
       />
@@ -60,11 +61,8 @@ export function App() {
       {/* ── SPOTIFY BG MUSIC WIDGET ─────────────────────── */}
       <SpotifyWidget />
 
-      {/* ── SITE ────────────────────────────────────────── */}
-      <main style={{ marginTop: 64, margin: "64px 20px 20px", border: "1px solid var(--border-primary)" }}>
-
-
-
+      {/* ── SITE MAIN CARD (Swipes up over the curtain reveal footer with rounded bottom corners) ── */}
+      <main className="relative z-10 bg-[var(--bg-primary)] border border-[var(--border-primary)] shadow-[0_35px_100px_rgba(0,0,0,0.95)] rounded-b-[40px] md:rounded-b-[56px] overflow-hidden mx-5 mt-16 mb-[100vh]">
         <HeroSection />
         <AboutSection />
         <TerminalSection />
@@ -72,13 +70,12 @@ export function App() {
         <StatsPanelSection />
         <JourneySection />
         <ContactSection />
-
-        <footer className="site-footer">
-          <span>© {new Date().getFullYear()} Mayank Chaudhary</span>
-          <span>Built with React · TypeScript · Tailwind</span>
-          <span>Lucknow, India</span>
-        </footer>
       </main>
+
+      {/* ── CURTAIN REVEAL FOOTER (Fixed underneath filling 100% of the screen, revealed on swipe up) ── */}
+      <div className="fixed inset-0 z-1 pointer-events-auto overflow-hidden w-full h-screen">
+        <FooterRevealSection />
+      </div>
     </div>
   );
 }
