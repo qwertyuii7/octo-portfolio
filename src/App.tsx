@@ -13,21 +13,11 @@ import { FooterRevealSection } from "./components/FooterRevealSection";
 import { useBootloader }    from "./hooks/useBootloader";
 import { useReveal }        from "./hooks/useReveal";
 import { useSpotlight }     from "./hooks/useSpotlight";
-
-const BOOT_LINES = [
-  { text: "[ OK ] SYSTEM_INIT",             cls: "boot-ok" },
-  { text: "[ OK ] KERNEL_LOADED",           cls: "boot-ok" },
-  { text: "[ OK ] MEMORY_CHECK ... PASSED", cls: "boot-ok" },
-  { text: "[ OK ] UI_SUBSYSTEM_ONLINE",     cls: "boot-ok" },
-  { text: "[ OK ] NETWORK_PROTOCOL_READY",  cls: "boot-ok" },
-  { text: "[ OK ] REACT_ENGINE_STARTED",    cls: "boot-ok" },
-  { text: "[ OK ] USER_SESSION_ACTIVE",     cls: "boot-ok" },
-  { text: "> LAUNCHING  portfolio_v2.0 ...", cls: "boot-final" },
-];
+import { StudioLoader }     from "./components/StudioLoader";
 
 export function App() {
   const { cursorRef, containerRef, cursorMode } = useSpotlight();
-  const { booting, linesVisible } = useBootloader();
+  const { booting, progress } = useBootloader();
   useReveal();
 
   useEffect(() => {
@@ -53,20 +43,8 @@ export function App() {
   return (
     <div ref={containerRef} className="relative">
 
-      {/* ── BOOT LOADER ─────────────────────────────────── */}
-      <div
-        id="boot-loader"
-        style={{ opacity: booting ? 1 : 0, visibility: booting ? "visible" : "hidden", transition: "opacity .7s ease, visibility .7s" }}
-        aria-hidden={!booting}
-      >
-        <div id="boot-logo">PORTFOLIO_OS / v2.0 / BOOT SEQUENCE</div>
-        <div>
-          {BOOT_LINES.slice(0, linesVisible).map((l, i) => (
-            <p key={i} className={l.cls} style={{ animationDelay: `${i * 0.05}s` }}>{l.text}</p>
-          ))}
-          {linesVisible > 0 && <span className="boot-cursor" />}
-        </div>
-      </div>
+      {/* ── STUDIO ENTRANCE LOADER ──────────────────────── */}
+      <StudioLoader booting={booting} progress={progress} />
 
       {/* ── GLOBAL OVERLAYS ─────────────────────────────── */}
       <div className="noise-overlay" aria-hidden />
