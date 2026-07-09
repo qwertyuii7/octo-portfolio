@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+import { useEffect, CSSProperties } from "react";
+import Lenis from "lenis";
 import { AboutSection }     from "./components/AboutSection";
 import { ContactSection }   from "./components/ContactSection";
 import { StatsPanelSection } from "./components/StatsPanelSection";
@@ -16,7 +17,8 @@ import { useSpotlight }     from "./hooks/useSpotlight";
 const BOOT_LINES = [
   { text: "[ OK ] SYSTEM_INIT",             cls: "boot-ok" },
   { text: "[ OK ] KERNEL_LOADED",           cls: "boot-ok" },
-  { text: "[ OK ] CSS_MODULES_READY",       cls: "boot-ok" },
+  { text: "[ OK ] MEMORY_CHECK ... PASSED", cls: "boot-ok" },
+  { text: "[ OK ] UI_SUBSYSTEM_ONLINE",     cls: "boot-ok" },
   { text: "[ OK ] NETWORK_PROTOCOL_READY",  cls: "boot-ok" },
   { text: "[ OK ] REACT_ENGINE_STARTED",    cls: "boot-ok" },
   { text: "[ OK ] USER_SESSION_ACTIVE",     cls: "boot-ok" },
@@ -24,12 +26,32 @@ const BOOT_LINES = [
 ];
 
 export function App() {
-  const { position, isHovering, cursorMode } = useSpotlight();
+  const { cursorRef, containerRef, cursorMode } = useSpotlight();
   const { booting, linesVisible } = useBootloader();
   useReveal();
 
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
-    <div className="relative" style={{ "--mouse-x": `${position.x}px`, "--mouse-y": `${position.y}px` } as CSSProperties}>
+    <div ref={containerRef} className="relative">
 
       {/* ── BOOT LOADER ─────────────────────────────────── */}
       <div
@@ -50,8 +72,8 @@ export function App() {
       <div className="noise-overlay" aria-hidden />
       <div className="spotlight"     aria-hidden />
       <div
+        ref={cursorRef}
         className={`custom-cursor ${cursorMode === "hero-name" ? "hero-name" : cursorMode === "hover" ? "hover" : ""}`}
-        style={{ left: position.x, top: position.y }}
         aria-hidden
       />
 
