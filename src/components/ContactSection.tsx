@@ -124,6 +124,7 @@ export function ContactSection() {
             src="/assets/coffee_cart.glb"
             alt="3D Coffee Cart"
             camera-controls
+            disable-zoom
             shadow-intensity="1"
             camera-orbit="90deg 75deg 85%"
             interaction-prompt="none"

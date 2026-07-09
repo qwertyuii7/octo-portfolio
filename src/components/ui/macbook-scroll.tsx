@@ -14,6 +14,7 @@ declare global {
             alt?: string;
             "auto-rotate"?: boolean;
             "camera-controls"?: boolean;
+            "disable-zoom"?: boolean;
             "shadow-intensity"?: string | number;
             "camera-orbit"?: string;
             "field-of-view"?: string;
@@ -196,6 +197,7 @@ export const MacbookScroll = ({
               alt="3D Coffee Mug"
               auto-rotate
               camera-controls
+              disable-zoom
               shadow-intensity="1"
               camera-orbit="35deg 50deg 105%"
               orientation="0deg 15deg 0deg"
