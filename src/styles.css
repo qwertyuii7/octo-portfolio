@@ -101,9 +101,36 @@
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 
+  @media (min-width: 769px) {
+    *,
+    *::before,
+    *::after,
+    html,
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    .cursor-pointer {
+      cursor: none !important;
+    }
+  }
+
   @media (max-width: 768px) {
-    body {
-      cursor: auto;
+    *,
+    *::before,
+    *::after,
+    html,
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    .cursor-pointer {
+      cursor: auto !important;
     }
 
     .custom-cursor {
@@ -121,23 +148,57 @@
 
 
   .custom-cursor {
-    width: 10px;
-    height: 10px;
-    background: #fff;
+    width: 12px;
+    height: 12px;
+    background: var(--text-primary);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 99999;
+    z-index: 999999;
     transform: translate(-50%, -50%);
-    transition: width .2s, height .2s, background .2s;
+    transition: width .15s cubic-bezier(0.16, 1, 0.3, 1), height .15s cubic-bezier(0.16, 1, 0.3, 1), background .15s ease, border .15s ease;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .custom-cursor.hover {
-    width: 26px;
-    height: 26px;
-    background: transparent;
-    border: 1.5px solid var(--text-primary);
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: none !important;
     mix-blend-mode: difference;
+  }
+
+  :root[data-theme="draft"] .custom-cursor.hover {
+    background: rgba(0, 0, 0, 0.12);
+    border: none !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: none !important;
+    mix-blend-mode: normal;
+  }
+
+  .custom-cursor.hero-name {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: none !important;
+    mix-blend-mode: difference;
+  }
+
+  :root[data-theme="draft"] .custom-cursor.hero-name {
+    background: rgba(0, 0, 0, 0.12);
+    border: none !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: none !important;
+    mix-blend-mode: normal;
   }
 
 
@@ -637,6 +698,78 @@
     border-radius: 8px;
     overflow: hidden;
     position: relative;
+    z-index: 10;
+  }
+
+  @keyframes terminal3DFloat {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes groundShadowPulse {
+    0% {
+      transform: scaleX(1) scaleY(1);
+      opacity: 0.75;
+    }
+    50% {
+      transform: scaleX(0.88) scaleY(0.88);
+      opacity: 0.45;
+    }
+    100% {
+      transform: scaleX(1) scaleY(1);
+      opacity: 0.75;
+    }
+  }
+
+  .terminal-3d-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    perspective: 1400px;
+  }
+
+  .terminal-shell.floating-3d {
+    animation: terminal3DFloat 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 1px 1px var(--border-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .terminal-shell.floating-3d:hover {
+    animation-play-state: paused;
+    transform: translateY(-4px);
+  }
+
+  .terminal-ground-shadow {
+    position: absolute;
+    bottom: -16px;
+    left: 8%;
+    right: 8%;
+    height: 28px;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(14px);
+    animation: groundShadowPulse 6s ease-in-out infinite;
+    z-index: 0;
+    transition: background 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Default black/night theme: whitish shadow */
+  :root .terminal-ground-shadow {
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 55%, transparent 80%);
+  }
+
+  /* White/draft theme: black small rounded shadow */
+  :root[data-theme="draft"] .terminal-ground-shadow {
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.25) 55%, transparent 80%);
   }
 
   .terminal-titlebar {
@@ -1446,6 +1579,41 @@
     text-shadow: 0 0 18px #0f0, 0 0 35px rgba(0, 255, 0, .25);
     border-color: rgba(0, 255, 65, .8);
   }
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 38s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 42s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
 }
 
 @theme inline {
