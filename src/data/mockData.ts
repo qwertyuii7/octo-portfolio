@@ -52,10 +52,13 @@ export const navItems = [
 ] as const;
 
 export const skillGroups: readonly SkillGroup[] = [
-  { title: "Languages", items: ["C++", "Python", "JavaScript", "TypeScript", "HTML", "CSS", "GDScript"] },
-  { title: "MERN Stack", items: ["MongoDB", "Express.js", "React", "Node.js"] },
-  { title: "Tools & Core", items: ["Git", "GitHub", "Linux", "Ubuntu", "WSL", "Godot", "File I/O", "Authentication"] },
-  { title: "Web Systems", items: ["APIs", "Maps Integration", "Dashboards", "Responsive UI"] },
+  { title: "LANGUAGES", items: ["JavaScript (ES6+)", "TypeScript", "C++", "Python"] },
+  { title: "FRONTEND", items: ["React", "Vite", "Tailwind CSS", "HTML5", "CSS3", "Framer Motion", "GSAP"] },
+  { title: "BACKEND", items: ["AI Agents", "Payment Integrations", "Node.js", "Express.js", "REST APIs", "JWT Authentication", "Socket.io"] },
+  { title: "DATABASE", items: ["MongoDB", "Supabase"] },
+  { title: "TOOLS", items: ["AI Agents", "Model Context Protocol (MCP)", "Git", "GitHub", "Postman", "Cursor", "VS Code", "Warp", "npm", "Figma", "Canva"] },
+  { title: "CLOUD & DEPLOYMENT", items: ["Vercel", "Render", "GitHub Actions"] },
+  { title: "CURRENTLY EXPLORING", items: ["System Design", "WebSockets", "Redis", "3D Web Experiences", "Three.js Ecosystem"] },
 ];
 
 export const projects: readonly Project[] = [
@@ -276,9 +279,9 @@ export const terminalCommands = [
 export const terminalCommandResponses: Record<string, string> = {
   help:          "Available Commands:\n  • whoami    — Short bio & current focus\n  • stack     — Technical skills & technologies\n  • projects  — Overview of shipped products\n  • skills    — Core engineering competencies\n  • contact   — Direct communication channels\n  • about     — Quick background & experience\n  • github    — Visit my GitHub profile (@qwertyuii7)\n  • leetcode  — Visit my LeetCode stats (@chaudharymayank)\n  • matrix    — Trigger the full-page Matrix effect\n  • ls        — List portfolio directories & files\n  • uname -a  — System kernel & OS information\n  • cat bio   — Display full biography\n  • date      — Current system time & timestamp\n  • clear     — Clear terminal screen",
   whoami:        "Mayank Chaudhary — CS Engineering Student @ Lucknow University.\nBuilds in C++, Python & Web. Open to freelance work and exciting opportunities.",
-  stack:         "Languages : C++, Python, TypeScript, JavaScript, HTML/CSS\nWeb       : React, Vite, Node.js, Tailwind CSS, REST APIs\nTools     : Git, GitHub, Linux/Ubuntu, Figma, VS Code\nDatabase  : SQL, File-based persistent storage",
+  stack:         "LANGUAGES          : JavaScript (ES6+), TypeScript, C++, Python\nFRONTEND           : React, Vite, Tailwind CSS, HTML5, CSS3, Framer Motion, GSAP\nBACKEND            : AI Agents, Payment Integrations, Node.js, Express.js, REST APIs, JWT Authentication, Socket.io\nDATABASE           : MongoDB, Supabase\nTOOLS              : AI Agents, Model Context Protocol (MCP), Git, GitHub, Postman, Cursor, VS Code, Warp, npm, Figma, Canva\nCLOUD & DEPLOYMENT : Vercel, Render, GitHub Actions\nCURRENTLY EXPLORING: System Design, WebSockets, Redis, 3D Web Experiences, Three.js Ecosystem",
   projects:      "1. MEDIGUARD       — Healthcare safety & emergency response platform\n2. DEVELOPER LEAGUE — Global dev ranking & analytical dashboard\n3. SMART HOME AUTO — Command-driven home automation interface\n4. BANKING SYSTEM  — C++ terminal-based core banking engine\n5. SECURE AUTH     — C++ authentication & file persistence system",
-  skills:        "• Problem Solving & Data Structures (C++)\n• Full-Stack Web Architecture (React, Vite, TS)\n• Systems Engineering & Clean Object-Oriented Design\n• UI/UX Design Engineering (Dark-mode, Glassmorphism)",
+  skills:        "LANGUAGES          : JavaScript (ES6+), TypeScript, C++, Python\nFRONTEND           : React, Vite, Tailwind CSS, HTML5, CSS3, Framer Motion, GSAP\nBACKEND            : AI Agents, Payment Integrations, Node.js, Express.js, REST APIs, JWT Authentication, Socket.io\nDATABASE           : MongoDB, Supabase\nTOOLS              : AI Agents, Model Context Protocol (MCP), Git, GitHub, Postman, Cursor, VS Code, Warp, npm, Figma, Canva\nCLOUD & DEPLOYMENT : Vercel, Render, GitHub Actions\nCURRENTLY EXPLORING: System Design, WebSockets, Redis, 3D Web Experiences, Three.js Ecosystem",
   contact:       "Email    : contact@mayankchaudhary.dev\nGitHub   : github.com/qwertyuii7\nLeetCode : leetcode.com/u/chaudharymayank/\nLocation : Lucknow, India · Open for Freelance",
   about:         "CS Engineering Student entering 3rd year at Lucknow University.\nPassionate about low-level C++ systems and modern, high-performance web applications.",
   github:        "→ Redirecting to github.com/qwertyuii7 ...",

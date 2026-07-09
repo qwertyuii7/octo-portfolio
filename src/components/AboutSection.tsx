@@ -1,5 +1,6 @@
 import { profile, skillGroups, aboutHighlights } from "../data/mockData";
 import { useLiveStats } from "../hooks/useLiveStats";
+import { TechMarquee3D } from "./TechMarquee3D";
 
 export function AboutSection() {
   const { stats, isLoading } = useLiveStats(profile.githubUsername, profile.leetcodeUsername);
@@ -52,7 +53,7 @@ export function AboutSection() {
               <div>
                 <p className="font-mono text-xs text-[var(--text-faint)] tracking-widest uppercase mb-6 border-b border-[var(--border-primary)] pb-4">Currently focused on</p>
                 <ul className="space-y-3 mt-4">
-                  {["DSA & Problem Solving", "C++ Systems Design", "Full-Stack Web Dev", "Open Source · Freelancing"].map(item => (
+                  {["System Design", "WebSockets & Redis", "3D Web Experiences (Three.js)", "AI Agents & MCP"].map(item => (
                     <li key={item} className="flex items-center gap-3 font-mono text-sm text-[var(--text-muted)]">
                       <span className="text-[var(--text-faint)]">/</span> {item}
                     </li>
@@ -71,15 +72,27 @@ export function AboutSection() {
         <div className="reveal-item" style={{ transitionDelay: ".3s" }} id="skills">
           <div className="mt-12">
             <p className="font-mono text-xs text-[var(--text-faint)] tracking-widest uppercase mb-6 border-b border-[var(--border-primary)] pb-4">Tech Stack &amp; Skills</p>
-            <div className="flex flex-wrap gap-3 mt-6">
-              {skillGroups.flatMap(g => g.items).map(skill => (
-                <span key={skill} className="btn-outline-sm" style={{ cursor: "default" }}>
-                  {skill}
-                </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+              {skillGroups.map(group => (
+                <div key={group.title} className="flex flex-col gap-3">
+                  <span className="font-mono text-[11px] font-bold text-[var(--card-accent)] tracking-wider uppercase">
+                    {group.title}
+                  </span>
+                  <div className="flex flex-wrap gap-2.5">
+                    {group.items.map(skill => (
+                      <span key={skill} className="btn-outline-sm" style={{ cursor: "default" }}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
+
+        {/* ── 3D Infinite Tech Stack Marquee ── */}
+        <TechMarquee3D />
       </div>
     </section>
   );
