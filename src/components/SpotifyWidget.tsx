@@ -120,7 +120,7 @@ export function SpotifyWidget() {
       if (!hasInteracted && audioRef.current.currentTime < 59) {
         audioRef.current.currentTime = 59;
       }
-      audioRef.current.play().catch(() => {});
+      audioRef.current.play().catch(() => { });
       setHasInteracted(true);
     }
   };
@@ -184,17 +184,15 @@ export function SpotifyWidget() {
       {!isExpanded ? (
         <div
           onClick={() => setIsExpanded(true)}
-          className={`group flex items-center gap-2 sm:gap-2.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-full backdrop-blur-2xl border cursor-pointer transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] ${
-            isDraft
+          className={`group flex items-center gap-2 sm:gap-2.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-full backdrop-blur-2xl border cursor-pointer transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] ${isDraft
               ? "bg-[#F4F2EC]/95 border-[#D1CFC8] hover:border-[#1aa34a] shadow-[0_10px_30px_rgba(26,26,26,0.15)] text-[#1A1A1A]"
               : "bg-[#11131a]/95 border-white/15 hover:border-[#1ED760]/60 shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-white"
-          }`}
+            }`}
           title="Click to open Spotify Player"
         >
           {/* Spotify Green Icon */}
-          <div className={`relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full shrink-0 ${
-            isDraft ? "bg-[#1aa34a]/15" : "bg-[#1ED760]/10"
-          }`}>
+          <div className={`relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full shrink-0 ${isDraft ? "bg-[#1aa34a]/15" : "bg-[#1ED760]/10"
+            }`}>
             <svg
               className={`w-4 h-4 sm:w-5 sm:h-5 ${isDraft ? "text-[#1aa34a]" : "text-[#1ED760]"}`}
               viewBox="0 0 24 24"
@@ -211,9 +209,8 @@ export function SpotifyWidget() {
           <img
             src="/assets/intro-import.jpg"
             alt="Sunflower Cover"
-            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border shrink-0 ${
-              isDraft ? "border-black/15" : "border-white/20"
-            } ${isPlaying ? "animate-[spin_10s_linear_infinite]" : ""}`}
+            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border shrink-0 ${isDraft ? "border-black/15" : "border-white/20"
+              } ${isPlaying ? "animate-[spin_10s_linear_infinite]" : ""}`}
             draggable={false}
           />
 
@@ -230,11 +227,10 @@ export function SpotifyWidget() {
           {/* Equalizer bars or Play icon */}
           <button
             onClick={togglePlay}
-            className={`ml-0 sm:ml-2 w-7 h-7 rounded-full flex items-center justify-center transition-colors shrink-0 ${
-              isDraft
+            className={`ml-0 sm:ml-2 w-7 h-7 rounded-full flex items-center justify-center transition-colors shrink-0 ${isDraft
                 ? "bg-black/10 hover:bg-[#1aa34a] text-[#1A1A1A] hover:text-white"
                 : "bg-white/10 hover:bg-[#1ED760] text-white hover:text-black"
-            }`}
+              }`}
             title={isPlaying ? "Pause Music" : "Play Music"}
           >
             {isPlaying ? (
@@ -250,11 +246,10 @@ export function SpotifyWidget() {
         </div>
       ) : (
         /* ── EXPANDED RECTANGLE SPOTIFY CARD ── */
-        <div className={`w-[290px] sm:w-[340px] max-w-[calc(100vw-32px)] backdrop-blur-3xl border rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 transition-all animate-in fade-in zoom-in-95 duration-200 ${
-          isDraft
+        <div className={`w-[290px] sm:w-[340px] max-w-[calc(100vw-32px)] backdrop-blur-3xl border rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 transition-all animate-in fade-in zoom-in-95 duration-200 ${isDraft
             ? "bg-[#F4F2EC]/95 border-[#D1CFC8] shadow-[0_25px_60px_-10px_rgba(26,26,26,0.18)] text-[#1A1A1A]"
             : "bg-[#101218]/95 border-white/15 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] text-white"
-        }`}>
+          }`}>
           {/* Header */}
           <div className={`flex items-center justify-between pb-1 border-b ${isDraft ? "border-black/10" : "border-white/10"}`}>
             <div className="flex items-center gap-2">
@@ -271,11 +266,10 @@ export function SpotifyWidget() {
             </div>
             <button
               onClick={() => setIsExpanded(false)}
-              className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors text-sm ${
-                isDraft
+              className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors text-sm ${isDraft
                   ? "bg-black/5 hover:bg-black/15 text-[#555555] hover:text-[#1A1A1A]"
                   : "bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white"
-              }`}
+                }`}
               title="Minimize"
             >
               —
@@ -288,9 +282,8 @@ export function SpotifyWidget() {
               <img
                 src="/assets/intro-import.jpg"
                 alt="Sunflower Cover Photo"
-                className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover shadow-lg border ${
-                  isDraft ? "border-black/15" : "border-white/15"
-                }`}
+                className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover shadow-lg border ${isDraft ? "border-black/15" : "border-white/15"
+                  }`}
                 draggable={false}
               />
               {isPlaying && (
@@ -321,9 +314,8 @@ export function SpotifyWidget() {
               max={duration || 160}
               value={currentTime}
               onChange={handleSeek}
-              className={`w-full h-1.5 rounded-lg appearance-none cursor-pointer focus:outline-none hover:h-2 transition-all ${
-                isDraft ? "bg-black/15 accent-[#1aa34a]" : "bg-white/15 accent-[#1ED760]"
-              }`}
+              className={`w-full h-1.5 rounded-lg appearance-none cursor-pointer focus:outline-none hover:h-2 transition-all ${isDraft ? "bg-black/15 accent-[#1aa34a]" : "bg-white/15 accent-[#1ED760]"
+                }`}
             />
             <div className={`flex items-center justify-between text-[10px] font-mono ${isDraft ? "text-[#555555]" : "text-gray-400"}`}>
               <span>{formatTime(currentTime)}</span>
@@ -345,9 +337,8 @@ export function SpotifyWidget() {
                 step={0.01}
                 value={volume}
                 onChange={handleVolumeChange}
-                className={`w-full h-1.5 rounded-lg appearance-none cursor-pointer ${
-                  isDraft ? "bg-black/15 accent-[#1aa34a]" : "bg-white/15 accent-[#1ED760]"
-                }`}
+                className={`w-full h-1.5 rounded-lg appearance-none cursor-pointer ${isDraft ? "bg-black/15 accent-[#1aa34a]" : "bg-white/15 accent-[#1ED760]"
+                  }`}
                 title="Adjust Volume"
               />
             </div>
@@ -358,18 +349,16 @@ export function SpotifyWidget() {
                 onClick={() => {
                   if (audioRef.current) audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 10);
                 }}
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors text-xs ${
-                  isDraft ? "bg-black/5 hover:bg-black/15 text-[#333333]" : "bg-white/5 hover:bg-white/15 text-gray-300"
-                }`}
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors text-xs ${isDraft ? "bg-black/5 hover:bg-black/15 text-[#333333]" : "bg-white/5 hover:bg-white/15 text-gray-300"
+                  }`}
                 title="Rewind 10s"
               >
                 -10s
               </button>
               <button
                 onClick={togglePlay}
-                className={`w-10 h-10 rounded-full text-black flex items-center justify-center shadow-lg transition-transform active:scale-95 shrink-0 ${
-                  isDraft ? "bg-[#1aa34a] hover:bg-[#168a3b] text-white" : "bg-[#1ED760] hover:bg-[#1fec69] text-black"
-                }`}
+                className={`w-10 h-10 rounded-full text-black flex items-center justify-center shadow-lg transition-transform active:scale-95 shrink-0 ${isDraft ? "bg-[#1aa34a] hover:bg-[#168a3b] text-white" : "bg-[#1ED760] hover:bg-[#1fec69] text-black"
+                  }`}
                 title={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? (
@@ -386,9 +375,8 @@ export function SpotifyWidget() {
                 onClick={() => {
                   if (audioRef.current) audioRef.current.currentTime = Math.min(duration, audioRef.current.currentTime + 10);
                 }}
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors text-xs ${
-                  isDraft ? "bg-black/5 hover:bg-black/15 text-[#333333]" : "bg-white/5 hover:bg-white/15 text-gray-300"
-                }`}
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors text-xs ${isDraft ? "bg-black/5 hover:bg-black/15 text-[#333333]" : "bg-white/5 hover:bg-white/15 text-gray-300"
+                  }`}
                 title="Forward 10s"
               >
                 +10s
