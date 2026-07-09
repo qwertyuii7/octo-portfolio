@@ -179,7 +179,7 @@ export function SpotifyWidget() {
   }, [isExpanded]);
 
   return (
-    <div ref={widgetRef} className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9990] font-sans select-none pointer-events-auto">
+    <div ref={widgetRef} className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9990] font-sans select-none pointer-events-auto flex flex-col items-end">
       {/* ── COLLAPSED / PILL EDGE TAB ── */}
       {!isExpanded ? (
         <div
