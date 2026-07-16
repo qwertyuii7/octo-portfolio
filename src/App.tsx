@@ -16,7 +16,7 @@ import { useSpotlight }     from "./hooks/useSpotlight";
 import { StudioLoader }     from "./components/StudioLoader";
 
 export function App() {
-  const { cursorRef, containerRef, cursorMode } = useSpotlight();
+  const { cursorRef, spotlightRef, containerRef, cursorMode } = useSpotlight();
   const { booting, progress } = useBootloader();
   useReveal();
 
@@ -48,7 +48,7 @@ export function App() {
 
       {/* ── GLOBAL OVERLAYS ─────────────────────────────── */}
       <div className="noise-overlay" aria-hidden />
-      <div className="spotlight"     aria-hidden />
+      <div ref={spotlightRef} className="spotlight" aria-hidden />
       <div
         ref={cursorRef}
         className={`custom-cursor ${cursorMode === "hero-name" ? "hero-name" : cursorMode === "hover" ? "hover" : ""}`}

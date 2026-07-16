@@ -7,6 +7,7 @@ export function useSpotlight() {
   const targetPos = useRef({ x: -100, y: -100 });
   const currentPos = useRef({ x: -100, y: -100 });
   const cursorRef = useRef<HTMLDivElement | null>(null);
+  const spotlightRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -20,14 +21,16 @@ export function useSpotlight() {
         setCursorMode("hero-name");
         setIsHovering(true);
       } else if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        (target.closest && (
-          target.closest('a') ||
-          target.closest('button') ||
-          target.closest('.cursor-pointer') ||
-          target.closest('[data-cursor-hover]')
-        ))
+        target && (
+          target.tagName === 'A' ||
+          target.tagName === 'BUTTON' ||
+          (target.closest && (
+            target.closest('a') ||
+            target.closest('button') ||
+            target.closest('.cursor-pointer') ||
+            target.closest('[data-cursor-hover]')
+          ))
+        )
       ) {
         setCursorMode("hover");
         setIsHovering(true);
@@ -42,17 +45,17 @@ export function useSpotlight() {
 
     let rafId: number;
     const animate = () => {
-      // Smooth linear interpolation (lerp) for silky buttery cursor tracking
-      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.22;
-      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.22;
+      // Ultra-crisp, buttery smooth interpolation factor (0.42) for immediate, non-laggy tracking
+      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.42;
+      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.42;
 
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${currentPos.current.x}px, ${currentPos.current.y}px, 0) translate(-50%, -50%)`;
       }
 
-      if (containerRef.current) {
-        containerRef.current.style.setProperty("--mouse-x", `${currentPos.current.x}px`);
-        containerRef.current.style.setProperty("--mouse-y", `${currentPos.current.y}px`);
+      // Update ONLY the spotlight element's radial gradient directly to avoid top-level layout thrashing
+      if (spotlightRef.current) {
+        spotlightRef.current.style.background = `radial-gradient(circle 500px at ${currentPos.current.x}px ${currentPos.current.y}px, rgba(255, 255, 255, .022), transparent 80%)`;
       }
 
       rafId = requestAnimationFrame(animate);
@@ -66,5 +69,5 @@ export function useSpotlight() {
     };
   }, []);
 
-  return { cursorRef, containerRef, isHovering, cursorMode };
+  return { cursorRef, spotlightRef, containerRef, isHovering, cursorMode };
 }
