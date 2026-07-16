@@ -43,6 +43,7 @@ export function SpotifyWidget() {
 
   useEffect(() => {
     const audio = new Audio("/assets/sunflower.mp3");
+    audio.preload = "none";
     audio.currentTime = 59; // Start after 59 seconds per user request
     audio.volume = 0.25;
     audio.loop = true;
