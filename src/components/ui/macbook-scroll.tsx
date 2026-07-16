@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MotionValue, motion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
-import "@google/model-viewer";
 
 declare global {
   namespace React {
@@ -141,11 +140,17 @@ export const MacbookScroll = ({
   });
 
   const [isMobile, setIsMobile] = useState(false);
+  const [loadMug, setLoadMug] = useState(false);
 
   useEffect(() => {
     if (window && window.innerWidth < 768) {
       setIsMobile(true);
     }
+    const timer = setTimeout(() => {
+      setLoadMug(true);
+      import("@google/model-viewer");
+    }, 1800);
+    return () => clearTimeout(timer);
   }, []);
 
   const scaleX = useTransform(
@@ -192,18 +197,20 @@ export const MacbookScroll = ({
         {/* 3D Coffee Mug positioned to the left side of the keyboard / base area */}
         <div className="absolute -left-[12rem] top-2 z-40 h-[11rem] w-[11rem] md:-left-[13.5rem] md:h-[12.5rem] md:w-[12.5rem] pointer-events-auto">
           <MagneticMug>
-            <model-viewer
-              src="/assets/coffee_mug.glb"
-              alt="3D Coffee Mug"
-              auto-rotate
-              camera-controls
-              disable-zoom
-              shadow-intensity="1"
-              camera-orbit="35deg 50deg 105%"
-              orientation="0deg 15deg 0deg"
-              interaction-prompt="none"
-              style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
-            ></model-viewer>
+            {loadMug ? (
+              <model-viewer
+                src="/assets/coffee_mug.glb"
+                alt="3D Coffee Mug"
+                auto-rotate
+                camera-controls
+                disable-zoom
+                shadow-intensity="1"
+                camera-orbit="35deg 50deg 105%"
+                orientation="0deg 15deg 0deg"
+                interaction-prompt="none"
+                style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
+              ></model-viewer>
+            ) : null}
           </MagneticMug>
         </div>
 
