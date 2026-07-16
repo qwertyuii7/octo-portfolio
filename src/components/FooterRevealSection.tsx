@@ -110,13 +110,31 @@ export function FooterRevealSection() {
         }
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      if (isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
-    render();
+    let isVisible = false;
+    const checkVisibility = () => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollPos = window.scrollY + window.innerHeight;
+      const visibleNow = scrollPos > scrollHeight - 850 || scrollHeight <= window.innerHeight + 100;
+      if (visibleNow && !isVisible) {
+        isVisible = true;
+        animationFrameId = requestAnimationFrame(render);
+      } else if (!visibleNow && isVisible) {
+        isVisible = false;
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+
+    window.addEventListener("scroll", checkVisibility, { passive: true });
+    checkVisibility();
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", checkVisibility);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
