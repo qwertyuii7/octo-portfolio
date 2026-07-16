@@ -43,7 +43,7 @@ export function HangingDevCard() {
   const dragAngle0 = useRef(0);
   const didDragRef = useRef(false);
 
-  const [angle, setAngle] = useState(0.08);
+  const pendulumRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useRef(false);
 
   const tick = useCallback((now: number) => {
@@ -75,7 +75,9 @@ export function HangingDevCard() {
       s.vel += torque * dt;
       s.angle += s.vel * dt;
       s.angle = Math.max(-1.2, Math.min(1.2, s.angle));
-      setAngle(s.angle);
+      if (pendulumRef.current) {
+        pendulumRef.current.style.transform = `rotate(${s.angle * (180 / Math.PI)}deg)`;
+      }
     } else if (isDraggingRef.current && dt > 0) {
       s.vel = (s.angle - prevAngleRef.current) / dt;
       prevAngleRef.current = s.angle;
@@ -88,7 +90,7 @@ export function HangingDevCard() {
     reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion.current) {
       physRef.current = { angle: 0, vel: 0 };
-      setAngle(0);
+      if (pendulumRef.current) pendulumRef.current.style.transform = "rotate(0deg)";
       return;
     }
 
@@ -129,7 +131,9 @@ export function HangingDevCard() {
     const newAngle = dragAngle0.current - dx / L;
     const clamped = Math.max(-1.2, Math.min(1.2, newAngle));
     physRef.current.angle = clamped;
-    setAngle(clamped);
+    if (pendulumRef.current) {
+      pendulumRef.current.style.transform = `rotate(${clamped * (180 / Math.PI)}deg)`;
+    }
   };
 
   const onPointerUp = (e: React.PointerEvent) => {
@@ -142,7 +146,6 @@ export function HangingDevCard() {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const cardRotateDeg = angle * (180 / Math.PI);
   const badgeId = `MC-${new Date().getFullYear()}`;
   const stackLine = "MERN · C++ · Python · TS";
 
@@ -151,6 +154,7 @@ export function HangingDevCard() {
       <div className="hanging-card-anchor" aria-hidden />
 
       <div
+        ref={pendulumRef}
         className="hanging-card-pendulum"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -166,7 +170,7 @@ export function HangingDevCard() {
             onCardClick();
           }
         }}
-        style={{ transform: `rotate(${cardRotateDeg}deg)` }}
+        style={{ transform: `rotate(${physRef.current.angle * (180 / Math.PI)}deg)` }}
       >
         <div className="hanging-card-lanyard">
           <Lanyard length={ROPE_LENGTH} color="var(--card-rope)" />
