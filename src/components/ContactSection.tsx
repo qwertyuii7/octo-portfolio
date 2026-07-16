@@ -1,6 +1,6 @@
+import { useState, useEffect, useRef } from "react";
 import { profile } from "../data/mockData";
 import { FloatingDock } from "./ui/floating-dock";
-import "@google/model-viewer";
 import {
   IconMail,
   IconBrandGithub,
@@ -50,8 +50,28 @@ const dockItems = [
 ];
 
 export function ContactSection() {
+  const [shouldLoad3D, setShouldLoad3D] = useState(false);
+  const containerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoad3D(true);
+          import("@google/model-viewer");
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "450px" }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={containerRef}
       className="py-20 md:py-32 px-6 md:px-12"
       id="contact"
     >
@@ -120,17 +140,23 @@ export function ContactSection() {
           className="lg:col-span-4 lg:col-start-9 flex items-center justify-center reveal-item w-full h-[380px] md:h-[480px] cursor-pointer"
           style={{ transitionDelay: ".2s" }}
         >
-          <model-viewer
-            src="/assets/coffee_cart.glb"
-            alt="3D Coffee Cart"
-            camera-controls
-            disable-zoom
-            shadow-intensity="1"
-            camera-orbit="90deg 75deg 85%"
-            interaction-prompt="none"
-            onClick={() => window.location.href = `mailto:${profile.email}`}
-            style={{ width: "100%", height: "100%", backgroundColor: "transparent", cursor: "pointer" }}
-          ></model-viewer>
+          {shouldLoad3D ? (
+            <model-viewer
+              src="/assets/coffee_cart.glb"
+              alt="3D Coffee Cart"
+              camera-controls
+              disable-zoom
+              shadow-intensity="1"
+              camera-orbit="90deg 75deg 85%"
+              interaction-prompt="none"
+              onClick={() => window.location.href = `mailto:${profile.email}`}
+              style={{ width: "100%", height: "100%", backgroundColor: "transparent", cursor: "pointer" }}
+            ></model-viewer>
+          ) : (
+            <div className="w-full h-full border border-dashed border-[var(--border-primary)]/40 rounded-2xl flex flex-col items-center justify-center text-[var(--text-muted)] font-mono text-xs gap-3">
+              <span className="animate-pulse">☕ Loading 3D Coffee Cart...</span>
+            </div>
+          )}
         </div>
       </div>
     </section>
