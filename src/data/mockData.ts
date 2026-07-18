@@ -82,6 +82,23 @@ export const projects: readonly Project[] = [
   },
   {
     id: "02",
+    name: "Project Omega",
+    subtitle: "High-Performance Ecommerce API & Admin Interface",
+    url: "https://github.com/qwertyuii7",
+    deployedUrl: "https://client-gamma-orcin.vercel.app/?view=grid",
+    description: "Built a cursor-based pagination Express.js + MongoDB API handling 200,000+ products with consistent sub-second response times.",
+    features: [
+      "Designed a composite (created_at, _id) MongoDB index to eliminate skip-based query slowdowns at scale.",
+      "Built a React 18 + Vite admin interface on top of the API for browsing and managing product data.",
+      "Deployed the frontend on Vercel and the backend API on Render."
+    ],
+    tags: ["React", "Vite", "Node.js", "Express.js", "MongoDB"],
+    language: "TypeScript",
+    updated: "Jul 2026",
+    imageUrl: "/assets/omega_preview.png"
+  },
+  {
+    id: "03",
     name: "AI Resume Builder",
     subtitle: "AI-Powered Resume Optimization Platform",
     url: "https://github.com/qwertyuii7/AI-Resume-Builder",
@@ -98,7 +115,7 @@ export const projects: readonly Project[] = [
     imageUrl: "/assets/airesume_preview.png"
   },
   {
-    id: "03",
+    id: "04",
     name: "Smart Home Automation",
     subtitle: "Voice & Command-Driven Home Management",
     url: "https://github.com/qwertyuii7/Smarthome_automation",
@@ -115,7 +132,24 @@ export const projects: readonly Project[] = [
     imageUrl: "/assets/smarthome_preview.png",
   },
   {
-    id: "04",
+    id: "05",
+    name: "Elementum",
+    subtitle: "Strategic Design & Development Agency",
+    url: "https://github.com/qwertyuii7/ui-ux_elementum.git",
+    deployedUrl: "https://assignment-beta-lac-83.vercel.app/",
+    description: "A responsive React application first crafted in figma then converted into a functional static web interface. Built with React and Vite, featuring custom typography, responsive layouts, and clean component architecture.",
+    features: [
+      "Fully responsive layout optimized across Desktop, Tablet, and Mobile devices.",
+      "Integrates custom Gerbil font and Satoshi for body text.",
+      "Micro-interactions including hover transformations and animated underlines."
+    ],
+    tags: ["React", "Vite", "Vanilla CSS", "Figma"],
+    language: "React",
+    updated: "Jul 2026",
+    imageUrl: "/assets/elementum_preview.png"
+  },
+  {
+    id: "06",
     name: "Developer League",
     subtitle: "Global Developer Ranking Platform",
     url: "https://github.com/qwertyuii7/Developer-league",
@@ -132,7 +166,7 @@ export const projects: readonly Project[] = [
     deployedUrl: "https://developer-league.vercel.app/",
   },
   {
-    id: "05",
+    id: "07",
     name: "Pine Adventure",
     subtitle: "Trending 2D Game Built as a Hobby",
     url: "https://gamejolt.com/games/Trending_2d_Game_Pine-Adventure/1066369",
@@ -149,7 +183,7 @@ export const projects: readonly Project[] = [
     imageUrl: "/assets/pine_adventure_preview.png"
   },
   {
-    id: "06",
+    id: "08",
     name: "Banking System",
     subtitle: "Terminal-Based Core Banking Engine",
     url: "https://github.com/qwertyuii7/Banking-System_in_cpp",
@@ -164,7 +198,7 @@ export const projects: readonly Project[] = [
     updated: "Apr 2026",
   },
   {
-    id: "07",
+    id: "09",
     name: "Secure Auth System",
     subtitle: "Terminal-Based Authentication Engine",
     url: "https://github.com/qwertyuii7/Login-and-Registration-System",

@@ -7,8 +7,11 @@ import { projects, Project } from "../data/mockData";
 
 export function ProjectsSection() {
   const [active, setActive] = useState<Project | boolean | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
+  
+  const displayedProjects = showAll ? projects : projects.slice(0, 5);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -250,7 +253,7 @@ export function ProjectsSection() {
 
       <div className="px-6 md:px-12">
         <ul className="max-w-5xl mx-auto w-full flex flex-col gap-4">
-          {projects.map((project) => (
+          {displayedProjects.map((project) => (
             <motion.div
               layoutId={`card-${project.name}-${id}`}
               key={project.id}
@@ -345,6 +348,21 @@ export function ProjectsSection() {
             </motion.div>
           ))}
         </ul>
+        {projects.length > 5 && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 text-xs sm:text-sm rounded-none font-mono font-bold border-2 transition-all duration-300 uppercase tracking-widest shadow-[4px_4px_0px_0px_var(--border-primary)] hover:shadow-[6px_6px_0px_0px_var(--card-accent)] hover:-translate-y-1"
+              style={{
+                backgroundColor: "var(--bg-secondary)",
+                borderColor: "var(--border-primary)",
+                color: "var(--text-primary)",
+              }}
+            >
+              {showAll ? "Show Less ↑" : "See More Projects ↓"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
