@@ -62,7 +62,7 @@ export function App() {
       <SpotifyWidget />
 
       {/* ── SITE MAIN CARD (Swipes up over the curtain reveal footer with rounded bottom corners) ── */}
-      <main className="relative z-10 bg-[var(--bg-primary)] border border-[var(--border-primary)] shadow-[0_35px_100px_rgba(0,0,0,0.95)] rounded-b-[40px] md:rounded-b-[56px] overflow-hidden mx-5 mt-16 mb-[100vh]">
+      <main className="relative z-10 bg-[var(--bg-primary)] border border-[var(--border-primary)] shadow-2xl rounded-b-[40px] md:rounded-b-[56px] overflow-hidden mx-5 mt-16 mb-[100vh]">
         <HeroSection />
         <AboutSection />
         <TerminalSection />

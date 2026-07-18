@@ -88,7 +88,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       animate={{
         backdropFilter: visible ? "blur(24px)" : "blur(16px)",
         boxShadow: visible ? "var(--nav-shadow-visible)" : "none",
-        width: visible ? "min(720px, 92vw)" : "100%",
+        width: visible ? "min(720px, 92vw)" : "calc(100% - 40px)",
         height: visible ? 50 : 64,
         y: visible ? 16 : 0,
         borderRadius: visible ? 9999 : 24,
@@ -99,7 +99,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden max-w-7xl flex-row items-center justify-between self-start bg-[var(--nav-bg)] backdrop-blur-xl px-6 md:flex border-b border-[var(--border-primary)] overflow-hidden",
+        "relative z-[60] mx-auto hidden flex-row items-center justify-between self-start bg-[var(--nav-bg)] backdrop-blur-xl px-6 md:flex border-b border-[var(--border-primary)] overflow-hidden",
         visible && "border border-[var(--border-primary)] shadow-2xl",
         className,
       )}
@@ -154,11 +154,11 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       animate={{
         backdropFilter: visible ? "blur(24px)" : "blur(16px)",
         boxShadow: visible ? "var(--nav-shadow-visible)" : "none",
-        width: visible ? "92%" : "100%",
+        width: visible ? "92%" : "calc(100% - 40px)",
         height: visible ? 50 : 64,
         paddingRight: "16px",
         paddingLeft: "16px",
-        borderRadius: visible ? 25 : 20,
+        borderRadius: visible ? 25 : 24,
         y: visible ? 16 : 0,
       }}
       transition={{
