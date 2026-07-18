@@ -84,7 +84,7 @@ export const projects: readonly Project[] = [
     id: "02",
     name: "Project Omega",
     subtitle: "High-Performance Ecommerce API & Admin Interface",
-    url: "https://github.com/qwertyuii7",
+    url: "https://github.com/qwertyuii7/omega",
     deployedUrl: "https://client-gamma-orcin.vercel.app/?view=grid",
     description: "Built a cursor-based pagination Express.js + MongoDB API handling 200,000+ products with consistent sub-second response times.",
     features: [
