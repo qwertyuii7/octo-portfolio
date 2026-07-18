@@ -31,6 +31,9 @@
     --card-header: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
     --card-border: rgba(255, 255, 255, 0.12);
     --card-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+    --nav-shadow-visible: 0 8px 32px 0 rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    --vignette-bg: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.65) 100%);
+    --text-shadow-strong: 0 10px 20px rgba(0,0,0,0.5);
 
 
     --background: var(--bg-primary);
@@ -70,6 +73,9 @@
     --card-header: linear-gradient(135deg, #EBE9E2 0%, #E0DDD4 100%);
     --card-border: rgba(26, 26, 26, 0.12);
     --card-shadow: 0 18px 48px rgba(26, 26, 26, 0.12);
+    --nav-shadow-visible: 0 8px 32px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05) inset;
+    --vignette-bg: radial-gradient(circle at center, transparent 30%, rgba(26, 26, 26, 0.15) 100%);
+    --text-shadow-strong: 0 10px 20px rgba(0,0,0,0.1);
 
 
     --background: var(--bg-primary);

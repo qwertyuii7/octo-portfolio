@@ -87,13 +87,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     <motion.div
       animate={{
         backdropFilter: visible ? "blur(24px)" : "blur(16px)",
-        boxShadow: visible
-          ? "0 8px 32px 0 rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(255, 255, 255, 0.12) inset"
-          : "none",
+        boxShadow: visible ? "var(--nav-shadow-visible)" : "none",
         width: visible ? "min(720px, 92vw)" : "100%",
         height: visible ? 50 : 64,
         y: visible ? 16 : 0,
-        borderRadius: visible ? 9999 : 0,
+        borderRadius: visible ? 9999 : 24,
       }}
       transition={{
         type: "spring",
@@ -155,14 +153,12 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
     <motion.div
       animate={{
         backdropFilter: visible ? "blur(24px)" : "blur(16px)",
-        boxShadow: visible
-          ? "0 8px 32px 0 rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(255, 255, 255, 0.12) inset"
-          : "none",
+        boxShadow: visible ? "var(--nav-shadow-visible)" : "none",
         width: visible ? "92%" : "100%",
         height: visible ? 50 : 64,
-        paddingRight: visible ? "16px" : "16px",
-        paddingLeft: visible ? "16px" : "16px",
-        borderRadius: visible ? "25px" : "0px",
+        paddingRight: "16px",
+        paddingLeft: "16px",
+        borderRadius: visible ? 25 : 20,
         y: visible ? 16 : 0,
       }}
       transition={{

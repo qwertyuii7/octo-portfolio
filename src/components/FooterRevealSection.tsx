@@ -171,8 +171,7 @@ export function FooterRevealSection() {
       <div
         className="absolute inset-0 pointer-events-none z-15 opacity-40"
         style={{
-          background:
-            "radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.65) 100%)",
+          background: "var(--vignette-bg)",
         }}
       />
 
@@ -187,7 +186,7 @@ export function FooterRevealSection() {
         </p>
 
         {/* COLOSSAL STATIC NAME */}
-        <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10.5rem] font-black font-mono uppercase leading-none text-[var(--text-primary)] max-w-full break-words tracking-tighter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+        <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10.5rem] font-black font-mono uppercase leading-none text-[var(--text-primary)] max-w-full break-words tracking-tighter" style={{ filter: "drop-shadow(var(--text-shadow-strong))" }}>
           <span>MAYANK</span>{" "}
           <span>CHAUDHARY</span>
         </h2>
