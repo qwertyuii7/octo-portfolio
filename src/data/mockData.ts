@@ -32,10 +32,12 @@ export const profile = {
   leetcodeUsername: "chaudharymayank",
   hackerRankUrl: "https://www.hackerrank.com/profile/mayankchaudhar31",
   hackerRankUsername: "mayankchaudhar31",
+  geeksForGeeksUrl: "https://www.geeksforgeeks.org/profile/mayankchaudpalk",
+  geeksForGeeksUsername: "mayankchaudpalk",
   avatarUrl: "https://avatars.githubusercontent.com/u/189455750?v=4",
   heroImage: "/assets/mayank-hero.jpg",
   journeyImage: "/assets/mayank-journey.jpg",
-  repos: 20,
+  repos: 40,
   following: 1,
   joined: "Nov 2024",
   lastUpdated: "May 31, 2026",
@@ -215,22 +217,23 @@ export const projects: readonly Project[] = [
 ];
 
 export const githubStats = [
-  { label: "Public Repos", value: "20" },
+  { label: "Public Repos", value: "40+" },
   { label: "Primary Stack", value: "C++ / Web" },
   { label: "Recent Push", value: "Jun 2026" },
   { label: "Profile Since", value: "2024" },
 ] as const;
 
 export const leetcodeRows = [
-  { label: "Easy",   value: "49",  pct: 36 },   // 49 / 135 ≈ 36%
-  { label: "Medium", value: "81",  pct: 60 },   // 81 / 135 ≈ 60%
-  { label: "Hard",   value: "5",   pct: 4  },   // 5  / 135 ≈ 4%
+  { label: "Easy",   value: "80",  pct: 38 },   // 80 / 210 ≈ 38%
+  { label: "Medium", value: "110", pct: 52 },   // 110 / 210 ≈ 52%
+  { label: "Hard",   value: "20",  pct: 10 },   // 20  / 210 ≈ 10%
 ] as const;
 
 export const platformLinks = [
   { label: "GitHub", handle: "qwertyuii7", url: profile.githubUrl },
   { label: "LeetCode", handle: "chaudharymayank", url: profile.leetcodeUrl },
   { label: "HackerRank", handle: "mayankchaudhar31", url: profile.hackerRankUrl },
+  { label: "GeeksforGeeks", handle: "mayankchaudpalk", url: profile.geeksForGeeksUrl },
 ] as const;
 
 export const journeyItems = [
@@ -355,6 +358,12 @@ export const earlyExperiences = [
     title: "CS Engineering Student",
     org: "Lucknow University, Lucknow",
     desc: "Currently entering 3rd year. Building projects in C++, Python, and Web technologies alongside academics.",
+  },
+  {
+    year: "Jul 2026 – Present",
+    title: "Full Stack Developer",
+    org: "mastertej.com",
+    desc: "Working as a developer building scalable solutions and web applications.",
   },
   {
     year: "Now  ◉",

@@ -7,8 +7,8 @@ export function AboutSection() {
 
   // Recruiter-impressive: specific numbers tell a real story
   const HIGHLIGHTS = [
-    { value: isLoading ? "..." : (stats.github ? `${stats.github.publicRepos}+` : "20+"),  label: "GitHub Repos",       sub: "Public projects shipped" },
-    { value: isLoading ? "..." : (stats.leetcode ? `${stats.leetcode.totalSolved}+` : "135+"), label: "Problems Solved",     sub: "LeetCode (Easy/Med/Hard)" },
+    { value: isLoading ? "..." : (stats.github ? `${Math.max(40, Number(stats.github.publicRepos))}+` : "40+"),  label: "GitHub Repos",       sub: "Public projects shipped" },
+    { value: isLoading ? "..." : (stats.leetcode ? `${Math.max(210, stats.leetcode.totalSolved)}+` : "210+"), label: "Problems Solved",     sub: "DSA (Easy/Med/Hard)" },
     ...aboutHighlights,
   ];
 
