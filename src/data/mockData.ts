@@ -135,6 +135,22 @@ export const projects: readonly Project[] = [
   },
   {
     id: "05",
+    name: "Aurum Genève | Fine Timepieces",
+    subtitle: "Premium 3D Scroll Watch Site",
+    url: "https://classic-3d-watch-site-7jfb.vercel.app/",
+    deployedUrl: "https://classic-3d-watch-site-7jfb.vercel.app/",
+    description: "A premium 3D scroll website for fine timepieces built using GSAP.",
+    features: [
+      "3D scroll-based animations",
+      "Premium UI/UX design",
+      "GSAP-powered interactions"
+    ],
+    tags: ["GSAP", "Web", "3D", "UI/UX"],
+    language: "JavaScript",
+    updated: "2026",
+  },
+  {
+    id: "06",
     name: "Elementum",
     subtitle: "Strategic Design & Development Agency",
     url: "https://github.com/qwertyuii7/ui-ux_elementum.git",
@@ -151,7 +167,7 @@ export const projects: readonly Project[] = [
     imageUrl: "/assets/elementum_preview.png"
   },
   {
-    id: "06",
+    id: "07",
     name: "Developer League",
     subtitle: "Global Developer Ranking Platform",
     url: "https://github.com/qwertyuii7/Developer-league",
@@ -168,7 +184,7 @@ export const projects: readonly Project[] = [
     deployedUrl: "https://developer-league.vercel.app/",
   },
   {
-    id: "07",
+    id: "08",
     name: "Pine Adventure",
     subtitle: "Trending 2D Game Built as a Hobby",
     url: "https://gamejolt.com/games/Trending_2d_Game_Pine-Adventure/1066369",
@@ -185,7 +201,7 @@ export const projects: readonly Project[] = [
     imageUrl: "/assets/pine_adventure_preview.png"
   },
   {
-    id: "08",
+    id: "09",
     name: "Banking System",
     subtitle: "Terminal-Based Core Banking Engine",
     url: "https://github.com/qwertyuii7/Banking-System_in_cpp",
@@ -200,7 +216,7 @@ export const projects: readonly Project[] = [
     updated: "Apr 2026",
   },
   {
-    id: "09",
+    id: "10",
     name: "Secure Auth System",
     subtitle: "Terminal-Based Authentication Engine",
     url: "https://github.com/qwertyuii7/Login-and-Registration-System",
