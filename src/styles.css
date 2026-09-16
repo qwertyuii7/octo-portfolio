@@ -1944,15 +1944,18 @@
 /* Portrait screens (phones, tablet portrait) — keep center of action visible */
 @media (orientation: portrait) {
   .spidey-bg-video {
-    object-fit: cover;
-    object-position: center 30%;
+    object-fit: contain;
+    object-position: center center;
+    background-color: black;
   }
 }
 
 /* Very tall narrow screens (phones) — position to keep the best frame visible */
 @media (max-aspect-ratio: 9/16) {
   .spidey-bg-video {
-    object-position: center 25%;
+    object-fit: contain;
+    object-position: center center;
+    background-color: black;
   }
 }
 

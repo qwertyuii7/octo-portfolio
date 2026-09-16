@@ -1,10 +1,20 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { earlyExperiences, terminalCommandResponses, projects, profile } from "../data/mockData";
 
 import { X } from "lucide-react";
 
 export function SpideyExperience() {
   const glassCard = "backdrop-blur-xl bg-black/30 border border-white/20 shadow-2xl p-6 md:p-10";
+
+  useEffect(() => {
+    // Force scroll to top when entering cinematic mode, overriding browser scroll restoration
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    // Also disable scroll restoration if the browser supports it
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   const exitSpidey = () => {
     document.documentElement.setAttribute("data-theme", "night");
