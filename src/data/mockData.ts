@@ -102,19 +102,19 @@ export const projects: readonly Project[] = [
   },
   {
     id: "02",
-    name: "Project Omega",
-    subtitle: "High-Performance Ecommerce API & Admin Interface",
-    url: "https://github.com/qwertyuii7/omega",
-    deployedUrl: "https://client-gamma-orcin.vercel.app/?view=grid",
-    description: "Built a cursor-based pagination Express.js + MongoDB API handling 200,000+ products with consistent sub-second response times.",
+    name: "Aurum Genève | Fine Timepieces",
+    subtitle: "Premium 3D Scroll Watch Site",
+    url: "https://github.com/qwertyuii7/classic-3d-watch-site",
+    deployedUrl: "https://classic-3d-watch-site-7jfb.vercel.app/",
+    description: "A premium 3D scroll website for fine timepieces built using GSAP.",
     features: [
-      "Designed a composite (created_at, _id) MongoDB index to eliminate skip-based query slowdowns at scale.",
-      "Built a React 18 + Vite admin interface on top of the API for browsing and managing product data.",
-      "Deployed the frontend on Vercel and the backend API on Render."
+      "3D scroll-based animations",
+      "Premium UI/UX design",
+      "GSAP-powered interactions"
     ],
-    tags: ["React", "Vite", "Node.js", "Express.js", "MongoDB"],
-    language: "TypeScript",
-    updated: "Jul 2026",
+    tags: ["React", "GSAP", "Tailwind CSS", "3D"],
+    language: "JavaScript",
+    updated: "Mar 2026",
     imageUrl: "/assets/omega_preview.png"
   },
   {
@@ -153,19 +153,20 @@ export const projects: readonly Project[] = [
   },
   {
     id: "05",
-    name: "Aurum Genève | Fine Timepieces",
-    subtitle: "Premium 3D Scroll Watch Site",
-    url: "https://classic-3d-watch-site-7jfb.vercel.app/",
-    deployedUrl: "https://classic-3d-watch-site-7jfb.vercel.app/",
-    description: "A premium 3D scroll website for fine timepieces built using GSAP.",
+    name: "Project Omega",
+    subtitle: "High-Performance Ecommerce API & Admin Interface",
+    url: "https://github.com/qwertyuii7/omega",
+    deployedUrl: "https://client-gamma-orcin.vercel.app/?view=grid",
+    description: "Built a cursor-based pagination Express.js + MongoDB API handling 200,000+ products with consistent sub-second response times.",
     features: [
-      "3D scroll-based animations",
-      "Premium UI/UX design",
-      "GSAP-powered interactions"
+      "Designed a composite (created_at, _id) MongoDB index to eliminate skip-based query slowdowns at scale.",
+      "Built a React 18 + Vite admin interface on top of the API for browsing and managing product data.",
+      "Deployed the frontend on Vercel and the backend API on Render."
     ],
-    tags: ["GSAP", "Web", "3D", "UI/UX"],
-    language: "JavaScript",
-    updated: "2026",
+    tags: ["React", "Vite", "Node.js", "Express.js", "MongoDB"],
+    language: "TypeScript",
+    updated: "Jul 2026",
+    imageUrl: "/assets/omega_preview.png"
   },
   {
     id: "06",

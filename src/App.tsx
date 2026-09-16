@@ -16,6 +16,7 @@ import { useSpotlight }     from "./hooks/useSpotlight";
 import { useWebShooter }    from "./hooks/useWebShooter";
 import { SpideyExperience } from "./components/SpideyExperience";
 import { StudioLoader }     from "./components/StudioLoader";
+import { SpideyMobileBackground } from "./components/SpideyMobileBackground";
 
 export function App() {
   const { cursorRef, spotlightRef, containerRef, cursorMode } = useSpotlight();
@@ -120,6 +121,7 @@ export function App() {
       {/* ── SITE MAIN CARD ── */}
       {isSpidey ? (
         <main className="relative z-10">
+          <SpideyMobileBackground />
           <HeroSection isSpidey={isSpidey} />
           <SpideyExperience />
         </main>

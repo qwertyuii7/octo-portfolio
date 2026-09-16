@@ -93,18 +93,30 @@ export function SpideyExperience() {
           <h2 className="text-3xl md:text-5xl font-bold mb-8 text-[#FACC15] uppercase tracking-widest" style={{ WebkitTextStroke: "1px #000" }}>Top Missions</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.slice(0, 4).map((project, i) => (
-              <a key={i} href={project.url || "#"} target="_blank" rel="noreferrer" className="group block">
-                <div className="p-5 border border-white/10 bg-white/5 hover:bg-[#E23636]/20 hover:border-[#E23636] transition-all duration-300">
+              <div key={i} className="group block h-full">
+                <div className="p-5 border border-white/10 bg-white/5 hover:bg-[#E23636]/20 hover:border-[#E23636] transition-all duration-300 flex flex-col h-full">
                   <h3 className="text-xl font-bold text-white group-hover:text-[#FACC15] transition-colors">{project.name}</h3>
                   <p className="text-sm text-[#E23636] font-mono mb-3">{project.subtitle}</p>
                   <p className="text-gray-200 text-sm mb-4 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.slice(0,3).map(tag => (
                       <span key={tag} className="text-[10px] uppercase font-mono px-2 py-1 bg-black/50 border border-white/10">{tag}</span>
                     ))}
                   </div>
+                  <div className="mt-auto flex gap-4 pt-4 border-t border-white/10">
+                    {project.url && (
+                      <a href={project.url} target="_blank" rel="noreferrer" className="text-xs font-mono font-bold uppercase tracking-widest text-white hover:text-[#FACC15] transition-colors">
+                        GitHub ↗
+                      </a>
+                    )}
+                    {project.deployedUrl && (
+                      <a href={project.deployedUrl} target="_blank" rel="noreferrer" className="text-xs font-mono font-bold uppercase tracking-widest text-[#FACC15] hover:text-[#E23636] transition-colors">
+                        Live Demo ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>

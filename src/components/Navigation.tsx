@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { navItems, profile } from "../data/mockData";
-import { HangingDevCard } from "./HangingDevCard";
+const HangingDevCard = React.lazy(() => import("./HangingDevCard").then(m => ({ default: m.HangingDevCard })));
 import { motion, AnimatePresence } from "motion/react";
 import {
   Navbar,
@@ -346,7 +346,9 @@ export function Navigation({ isSpidey }: { isSpidey?: boolean }) {
       {/* ── PINNED HANGING DEV CARD (Only shown on devices with macbook component, md: and up) ── */}
       {!isSpidey && (
         <div className="fixed top-0 right-6 md:right-12 z-[9001] h-16 hidden md:flex items-center pointer-events-auto">
-          <HangingDevCard />
+          <React.Suspense fallback={<div className="w-12 h-16" />}>
+            <HangingDevCard />
+          </React.Suspense>
         </div>
       )}
 

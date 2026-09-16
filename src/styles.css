@@ -1946,7 +1946,7 @@
   .spidey-bg-video {
     object-fit: contain;
     object-position: center center;
-    background-color: black;
+    background: transparent;
   }
 }
 
@@ -1955,7 +1955,7 @@
   .spidey-bg-video {
     object-fit: contain;
     object-position: center center;
-    background-color: black;
+    background: transparent;
   }
 }
 
