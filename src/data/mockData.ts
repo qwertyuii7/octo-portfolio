@@ -35,8 +35,8 @@ export const profile = {
   geeksForGeeksUrl: "https://www.geeksforgeeks.org/profile/mayankchaudpalk",
   geeksForGeeksUsername: "mayankchaudpalk",
   avatarUrl: "https://avatars.githubusercontent.com/u/189455750?v=4",
-  heroImage: "/assets/mayank-hero.jpg",
-  journeyImage: "/assets/mayank-journey.jpg",
+  heroImage: "/assets/mayank-hero.webp",
+  journeyImage: "/assets/mayank-journey.webp",
   repos: 40,
   following: 1,
   joined: "Nov 2024",
@@ -80,7 +80,7 @@ export const projects: readonly Project[] = [
     tags: ["Next.js", "Node.js", "Express", "PostgreSQL", "Prisma", "Framer Motion"],
     language: "TypeScript",
     updated: "Sep 2026",
-    imageUrl: "/assets/sahayak.jpg"
+    imageUrl: "/assets/sahayak.webp"
   },
   {
     id: "01",
@@ -98,7 +98,7 @@ export const projects: readonly Project[] = [
     tags: ["JavaScript", "Web", "Maps API", "Healthcare"],
     language: "JavaScript",
     updated: "May 2026",
-    imageUrl: "/assets/mediguard_preview.png"
+    imageUrl: "/assets/mediguard_preview.webp"
   },
   {
     id: "02",
@@ -115,7 +115,7 @@ export const projects: readonly Project[] = [
     tags: ["React", "GSAP", "Tailwind CSS", "3D"],
     language: "JavaScript",
     updated: "Mar 2026",
-    imageUrl: "/assets/omega_preview.png"
+    imageUrl: "/assets/omega_preview.webp"
   },
   {
     id: "03",
@@ -132,7 +132,7 @@ export const projects: readonly Project[] = [
     tags: ["React", "TypeScript", "AI", "Tailwind CSS"],
     language: "TypeScript",
     updated: "Jun 2026",
-    imageUrl: "/assets/airesume_preview.png"
+    imageUrl: "/assets/airesume_preview.webp"
   },
   {
     id: "04",
@@ -149,7 +149,7 @@ export const projects: readonly Project[] = [
     language: "HTML",
     updated: "May 2026",
     deployedUrl: "https://smarthome-automation.vercel.app/",
-    imageUrl: "/assets/smarthome_preview.png",
+    imageUrl: "/assets/smarthome_preview.webp",
   },
   {
     id: "05",
@@ -166,7 +166,7 @@ export const projects: readonly Project[] = [
     tags: ["React", "Vite", "Node.js", "Express.js", "MongoDB"],
     language: "TypeScript",
     updated: "Jul 2026",
-    imageUrl: "/assets/omega_preview.png"
+    imageUrl: "/assets/omega_preview.webp"
   },
   {
     id: "06",
@@ -183,7 +183,7 @@ export const projects: readonly Project[] = [
     tags: ["React", "Vite", "Vanilla CSS", "Figma"],
     language: "React",
     updated: "Jul 2026",
-    imageUrl: "/assets/elementum_preview.png"
+    imageUrl: "/assets/elementum_preview.webp"
   },
   {
     id: "07",
@@ -199,7 +199,7 @@ export const projects: readonly Project[] = [
     tags: ["TypeScript", "Web", "APIs", "Leaderboard"],
     language: "TypeScript",
     updated: "Mar 2026",
-    imageUrl: "/assets/developer_league_preview.png",
+    imageUrl: "/assets/developer_league_preview.webp",
     deployedUrl: "https://developer-league.vercel.app/",
   },
   {
@@ -217,7 +217,7 @@ export const projects: readonly Project[] = [
     language: "GDScript",
     updated: "2026",
     linkText: "Play on GameJolt",
-    imageUrl: "/assets/pine_adventure_preview.png"
+    imageUrl: "/assets/pine_adventure_preview.webp"
   },
   {
     id: "09",
@@ -296,17 +296,17 @@ export const journeyItems = [
 
 export const milestoneCarouselItems = [
   {
-    src: "/assets/events/google-devfest-2025-lucknow.jpg",
+    src: "/assets/events/google-devfest-2025-lucknow.webp",
     title: "Google DevFest 2025 · Lucknow",
     alt: "Mayank at Google DevFest Lucknow 2025",
   },
   {
-    src: "/assets/events/foss-2026.jpg",
+    src: "/assets/events/foss-2026.webp",
     title: "FOSS United · Community Meetup 2026",
     alt: "FOSS United community event 2026",
   },
   {
-    src: "/assets/events/foss-february-meetup-2026.jpg",
+    src: "/assets/events/foss-february-meetup-2026.webp",
     title: "FOSS February Meetup · Lucknow",
     alt: "FOSS February meetup in Lucknow 2026",
   },
@@ -316,12 +316,12 @@ export const milestoneCarouselItems = [
     alt: "GDG Agentic Premier League Hackathon 2026",
   },
   {
-    src: "/assets/events/gdg-api-hackathon-finale-2026.png",
+    src: "/assets/events/gdg-api-hackathon-finale-2026.webp",
     title: "GDG API Hackathon · Finale 2026",
     alt: "GDG API Hackathon finale 2026",
   },
   {
-    src: "/assets/events/gdg-product-builder-day-2026.jpg",
+    src: "/assets/events/gdg-product-builder-day-2026.webp",
     title: "GDG Product Builder Day 2026",
     alt: "Google Developer Group Product Builder Day 2026",
   },

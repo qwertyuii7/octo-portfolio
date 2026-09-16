@@ -86,6 +86,27 @@ export function App() {
     };
   }, []);
 
+  // Preload heavy Spidey assets gracefully in the background 
+  // only after the initial bootloader finishes to not block main thread.
+  useEffect(() => {
+    if (booting || isSpidey) return;
+    
+    // Only preload on fast connections to save cellular data
+    const connection = (navigator as any).connection;
+    if (connection && connection.saveData) return;
+    if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g' || connection.effectiveType === '3g')) return;
+    
+    const preloadTimer = setTimeout(() => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'video';
+      link.href = '/assets/spidey.mp4';
+      document.head.appendChild(link);
+    }, 4000);
+    
+    return () => clearTimeout(preloadTimer);
+  }, [booting, isSpidey]);
+
   return (
     <div ref={containerRef} className="relative">
 

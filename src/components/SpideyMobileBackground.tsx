@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 
 export function SpideyMobileBackground() {
   const images = [
-    "0e0cbba8043144850fa860219b41f9ba.jpg",
-    "268127e6202c2e8b966c05e158451d21.jpg",
-    "3c5ff79411f2a16d56f8af3f9a8ab94e.jpg",
-    "4255d3936cfe0d4cbdc41e3f48e6763d.jpg",
-    "72a42ff1f5db74593f248172355dc361.jpg",
-    "b9027d9bdf3721a4f19c5a865262d8f7.jpg",
-    "f46f6b2fb939804cc98a772952ec3dab.jpg",
-    "fc02d2bac2bf7c2fadd9fb8006713d6a.jpg",
-    "e0a3f6cf4e60a6d907cc7e6572e3ac23.jpg",
+    "0e0cbba8043144850fa860219b41f9ba.webp",
+    "268127e6202c2e8b966c05e158451d21.webp",
+    "3c5ff79411f2a16d56f8af3f9a8ab94e.webp",
+    "4255d3936cfe0d4cbdc41e3f48e6763d.webp",
+    "72a42ff1f5db74593f248172355dc361.webp",
+    "b9027d9bdf3721a4f19c5a865262d8f7.webp",
+    "f46f6b2fb939804cc98a772952ec3dab.webp",
+    "fc02d2bac2bf7c2fadd9fb8006713d6a.webp",
+    "e0a3f6cf4e60a6d907cc7e6572e3ac23.webp",
     "OIP (7).webp",
     "OIP (8).webp",
     "OIP (9).webp"

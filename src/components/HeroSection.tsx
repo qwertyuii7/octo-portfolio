@@ -138,7 +138,7 @@ export function HeroSection({ isSpidey }: { isSpidey?: boolean }) {
             {/* Desktop 3D Macbook Scroll */}
             <div className="hero-macbook-desktop">
               <MacbookScroll
-                src="/assets/github_profile_combined.png"
+                src="/assets/github_profile_combined.webp"
                 showGradient={true}
                 title={null}
               />
@@ -148,7 +148,7 @@ export function HeroSection({ isSpidey }: { isSpidey?: boolean }) {
             <div className="hero-mobile-fallback">
               <ContainerScroll titleComponent={null}>
                 <img
-                  src="/assets/github_profile_combined.png"
+                  src="/assets/github_profile_combined.webp"
                   alt="Mayank Chaudhary GitHub Profile"
                   className="w-full h-auto object-contain rounded-2xl shadow-2xl"
                   draggable={false}

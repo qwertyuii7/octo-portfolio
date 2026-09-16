@@ -228,7 +228,7 @@ export function SpotifyWidget() {
 
           {/* Mini Cover Photo */}
           <img
-            src="/assets/intro-import.jpg"
+            src="/assets/intro-import.webp"
             alt="Sunflower Cover"
             className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border shrink-0 ${isDraft ? "border-black/15" : "border-white/20"
               } ${isPlaying ? "animate-[spin_10s_linear_infinite]" : ""}`}
@@ -304,7 +304,7 @@ export function SpotifyWidget() {
           <div className="flex items-center gap-3.5">
             <div className="relative shrink-0">
               <img
-                src="/assets/intro-import.jpg"
+                src="/assets/intro-import.webp"
                 alt="Sunflower Cover Photo"
                 className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover shadow-lg border ${isDraft ? "border-black/15" : "border-white/15"
                   }`}
