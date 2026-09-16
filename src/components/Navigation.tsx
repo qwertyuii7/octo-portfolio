@@ -308,7 +308,10 @@ function SideNavDrawer({
 
 export function Navigation({ isSpidey }: { isSpidey?: boolean }) {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "night");
+  const [theme, setTheme] = useState(() => {
+    const stored = localStorage.getItem("theme");
+    return stored === "spidey" ? "night" : (stored || "night");
+  });
 
   useEffect(() => {
     if (theme === "draft") {

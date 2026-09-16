@@ -130,7 +130,7 @@ export function TerminalSection() {
       setFlash(false);
       setMatrix(false);
       document.documentElement.setAttribute("data-theme", "spidey");
-      localStorage.setItem("theme", "spidey");
+      sessionStorage.setItem("spidey_mode", "true");
       window.dispatchEvent(new Event("storage"));
       window.location.reload();
     }, 4000);

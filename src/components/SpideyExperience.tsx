@@ -17,6 +17,7 @@ export function SpideyExperience() {
   }, []);
 
   const exitSpidey = () => {
+    sessionStorage.removeItem("spidey_mode");
     document.documentElement.setAttribute("data-theme", "night");
     localStorage.setItem("theme", "night");
     window.dispatchEvent(new Event("storage"));

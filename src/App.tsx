@@ -26,9 +26,14 @@ export function App() {
   /* ── Theme state (for web-shooter effect) ── */
   const [theme, setTheme] = useState(() => {
     if (typeof document !== "undefined") {
+      if (sessionStorage.getItem("spidey_mode") === "true") {
+        return "spidey";
+      }
       const docTheme = document.documentElement.getAttribute("data-theme");
       const stored = localStorage.getItem("theme");
-      return docTheme || stored || "night";
+      // Never boot into spidey directly from storage to keep it an easter egg
+      const initialStored = stored === "spidey" ? "night" : stored;
+      return docTheme || initialStored || "night";
     }
     return "night";
   });
@@ -38,9 +43,14 @@ export function App() {
 
   useEffect(() => {
     const updateTheme = () => {
+      if (sessionStorage.getItem("spidey_mode") === "true") {
+        setTheme("spidey");
+        return;
+      }
       const docTheme = document.documentElement.getAttribute("data-theme");
       const stored = localStorage.getItem("theme");
-      setTheme(docTheme || stored || "night");
+      const initialStored = stored === "spidey" ? "night" : stored;
+      setTheme(docTheme || initialStored || "night");
     };
     updateTheme();
 
