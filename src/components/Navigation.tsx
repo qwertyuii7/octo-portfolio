@@ -85,8 +85,8 @@ function NavRightControls({
                 width: 6,
                 height: 6,
                 borderRadius: "0px",
-                background: "#3fb950",
-                boxShadow: "0 0 8px #3fb950",
+                background: "var(--card-accent)",
+                boxShadow: "0 0 8px var(--card-accent)",
                 display: "inline-block",
                 animation: "pulseGlow 2s ease-in-out infinite",
               }}
@@ -290,8 +290,8 @@ function SideNavDrawer({
                     width: 8,
                     height: 8,
                     borderRadius: "0px",
-                    background: "#3fb950",
-                    boxShadow: "0 0 8px #3fb950",
+                    background: "var(--card-accent)",
+                    boxShadow: "0 0 8px var(--card-accent)",
                     display: "inline-block",
                     animation: "pulseGlow 2s ease-in-out infinite",
                   }}
@@ -306,13 +306,15 @@ function SideNavDrawer({
   );
 }
 
-export function Navigation() {
+export function Navigation({ isSpidey }: { isSpidey?: boolean }) {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "night");
 
   useEffect(() => {
     if (theme === "draft") {
       document.documentElement.setAttribute("data-theme", "draft");
+    } else if (theme === "spidey") {
+      document.documentElement.setAttribute("data-theme", "spidey");
     } else {
       document.documentElement.removeAttribute("data-theme");
     }
@@ -328,7 +330,10 @@ export function Navigation() {
   }, []);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === "night" ? "draft" : "night");
+    setTheme(prev => {
+      if (prev === "night") return "draft";
+      return "night";
+    });
   };
 
   const formattedNavItems = navItems.map(item => ({
@@ -337,11 +342,13 @@ export function Navigation() {
   }));
 
   return (
-    <Navbar className="fixed top-0 inset-x-0 z-[9000] w-full">
+    <Navbar className="fixed top-0 inset-x-0 z-[9000] w-full" isSpidey={isSpidey}>
       {/* ── PINNED HANGING DEV CARD (Only shown on devices with macbook component, md: and up) ── */}
-      <div className="fixed top-0 right-6 md:right-12 z-[9001] h-16 hidden md:flex items-center pointer-events-auto">
-        <HangingDevCard />
-      </div>
+      {!isSpidey && (
+        <div className="fixed top-0 right-6 md:right-12 z-[9001] h-16 hidden md:flex items-center pointer-events-auto">
+          <HangingDevCard />
+        </div>
+      )}
 
       {/* ── DESKTOP & TABLET RESIZABLE NAVBAR ── */}
       <NavBody className="transition-all duration-300">

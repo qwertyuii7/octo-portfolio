@@ -10,13 +10,15 @@ export function SpotifyWidget() {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof document !== "undefined") {
-      const isDraft = document.documentElement.getAttribute("data-theme") === "draft" || localStorage.getItem("theme") === "draft";
-      return isDraft ? "draft" : "night";
+      const docTheme = document.documentElement.getAttribute("data-theme");
+      const stored = localStorage.getItem("theme");
+      return docTheme || stored || "night";
     }
     return "night";
   });
 
   const isDraft = theme === "draft";
+  const isSpidey = theme === "spidey";
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const widgetRef = useRef<HTMLDivElement | null>(null);
@@ -25,8 +27,9 @@ export function SpotifyWidget() {
 
   useEffect(() => {
     const updateTheme = () => {
-      const isDraftTheme = document.documentElement.getAttribute("data-theme") === "draft" || localStorage.getItem("theme") === "draft";
-      setTheme(isDraftTheme ? "draft" : "night");
+      const docTheme = document.documentElement.getAttribute("data-theme");
+      const stored = localStorage.getItem("theme");
+      setTheme(docTheme || stored || "night");
     };
     updateTheme();
 
@@ -40,6 +43,19 @@ export function SpotifyWidget() {
       window.removeEventListener("storage", updateTheme);
     };
   }, []);
+
+  // Listen for Spidey video playing to stop background music
+  useEffect(() => {
+    const handleVideoPlaying = () => {
+      if (isPlaying && isSpidey && audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+        userManuallyStopped.current = true;
+      }
+    };
+    window.addEventListener("spidey-video-playing", handleVideoPlaying);
+    return () => window.removeEventListener("spidey-video-playing", handleVideoPlaying);
+  }, [isPlaying, isSpidey]);
 
   useEffect(() => {
     const audio = new Audio("/assets/sunflower.mp3");
@@ -185,17 +201,21 @@ export function SpotifyWidget() {
       {!isExpanded ? (
         <div
           onClick={() => setIsExpanded(true)}
-          className={`group flex items-center gap-2 sm:gap-2.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-full backdrop-blur-2xl border cursor-pointer transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] ${isDraft
-              ? "bg-[#F4F2EC]/95 border-[#D1CFC8] hover:border-[#1aa34a] shadow-[0_10px_30px_rgba(26,26,26,0.15)] text-[#1A1A1A]"
-              : "bg-[#11131a]/95 border-white/15 hover:border-[#1ED760]/60 shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-white"
+          className={`group flex items-center gap-2 sm:gap-2.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-full backdrop-blur-2xl border cursor-pointer transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] ${
+            isSpidey 
+              ? "bg-[#FFE81F]/95 border-black hover:border-red-600 shadow-[4px_4px_0px_#000] text-black rounded-none"
+              : isDraft
+                ? "bg-[#F4F2EC]/95 border-[#D1CFC8] hover:border-[#1aa34a] shadow-[0_10px_30px_rgba(26,26,26,0.15)] text-[#1A1A1A]"
+                : "bg-[#11131a]/95 border-white/15 hover:border-[#1ED760]/60 shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-white"
             }`}
           title="Click to open Spotify Player"
         >
           {/* Spotify Green Icon */}
-          <div className={`relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full shrink-0 ${isDraft ? "bg-[#1aa34a]/15" : "bg-[#1ED760]/10"
+          <div className={`relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full shrink-0 ${
+            isSpidey ? "bg-red-600 border border-black" : isDraft ? "bg-[#1aa34a]/15" : "bg-[#1ED760]/10"
             }`}>
             <svg
-              className={`w-4 h-4 sm:w-5 sm:h-5 ${isDraft ? "text-[#1aa34a]" : "text-[#1ED760]"}`}
+              className={`w-4 h-4 sm:w-5 sm:h-5 ${isSpidey ? "text-yellow-400" : isDraft ? "text-[#1aa34a]" : "text-[#1ED760]"}`}
               viewBox="0 0 24 24"
               fill="currentColor"
             >
@@ -247,9 +267,12 @@ export function SpotifyWidget() {
         </div>
       ) : (
         /* ── EXPANDED RECTANGLE SPOTIFY CARD ── */
-        <div className={`w-[290px] sm:w-[340px] max-w-[calc(100vw-32px)] backdrop-blur-3xl border rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 transition-all animate-in fade-in zoom-in-95 duration-200 ${isDraft
-            ? "bg-[#F4F2EC]/95 border-[#D1CFC8] shadow-[0_25px_60px_-10px_rgba(26,26,26,0.18)] text-[#1A1A1A]"
-            : "bg-[#101218]/95 border-white/15 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] text-white"
+        <div className={`w-[290px] sm:w-[340px] max-w-[calc(100vw-32px)] backdrop-blur-3xl border p-4 sm:p-5 flex flex-col gap-3.5 transition-all animate-in fade-in zoom-in-95 duration-200 ${
+          isSpidey
+            ? "bg-[#E23636] border-4 border-black shadow-[6px_6px_0px_0px_#FFD700] text-white rounded-none"
+            : isDraft
+              ? "bg-[#F4F2EC]/95 border-[#D1CFC8] shadow-[0_25px_60px_-10px_rgba(26,26,26,0.18)] text-[#1A1A1A] rounded-2xl"
+              : "bg-[#101218]/95 border-white/15 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.95)] text-white rounded-2xl"
           }`}>
           {/* Header */}
           <div className={`flex items-center justify-between pb-1 border-b ${isDraft ? "border-black/10" : "border-white/10"}`}>

@@ -56,14 +56,32 @@ export const navItems = [
 export const skillGroups: readonly SkillGroup[] = [
   { title: "LANGUAGES", items: ["JavaScript (ES6+)", "TypeScript", "C++", "Python"] },
   { title: "FRONTEND", items: ["React", "Vite", "Tailwind CSS", "HTML5", "CSS3", "Framer Motion", "GSAP"] },
-  { title: "BACKEND", items: ["AI Agents", "Payment Integrations", "Node.js", "Express.js", "REST APIs", "JWT Authentication", "Socket.io"] },
-  { title: "DATABASE", items: ["MongoDB", "Supabase"] },
-  { title: "TOOLS", items: ["AI Agents", "Model Context Protocol (MCP)", "Git", "GitHub", "Postman", "Cursor", "VS Code", "Warp", "npm", "Figma", "Canva"] },
-  { title: "CLOUD & DEPLOYMENT", items: ["Vercel", "Render", "GitHub Actions"] },
-  { title: "CURRENTLY EXPLORING", items: ["System Design", "WebSockets", "Redis", "3D Web Experiences", "Three.js Ecosystem"] },
+  { title: "BACKEND", items: ["AI Agents", "Payment Integrations", "Node.js", "Express.js", "REST APIs", "JWT Authentication", "Socket.io", "WebSockets"] },
+  { title: "DATABASE", items: ["MongoDB", "Supabase", "Redis"] },
+  { title: "TOOLS", items: ["AI Agents", "Model Context Protocol (MCP)", "Git", "GitHub", "Postman", "Cursor", "VS Code", "Warp", "npm", "Figma", "Canva", "Google Search Console", "Secure Shell (SSH)"] },
+  { title: "CLOUD & DEPLOYMENT", items: ["Vercel", "Render", "GitHub Actions", "AWS", "Hostinger"] },
+  { title: "CURRENTLY EXPLORING", items: ["System Design", "3D Web Experiences", "Three.js Ecosystem"] },
 ];
 
 export const projects: readonly Project[] = [
+  {
+    id: "00",
+    name: "SAHAYAK",
+    subtitle: "Cooperative Gig Services Marketplace",
+    url: "https://sahayak-app.vercel.app/",
+    deployedUrl: "https://sahayak-app.vercel.app/",
+    description: "Engineered specifically to address Problem Statement 26089 for the Smart India Hackathon 2026. Built with a decoupled architecture focusing on a responsive, professional user experience.",
+    features: [
+      "Custom Prisma database schemas for relational data",
+      "Interactive onboarding flow with Framer Motion animations",
+      "Google Authentication integration",
+      "Decoupled deployment (Frontend on Vercel, Backend on Render)"
+    ],
+    tags: ["Next.js", "Node.js", "Express", "PostgreSQL", "Prisma", "Framer Motion"],
+    language: "TypeScript",
+    updated: "Sep 2026",
+    imageUrl: "/assets/sahayak.jpg"
+  },
   {
     id: "01",
     name: "MEDIGUARD",
@@ -332,9 +350,9 @@ export const terminalCommands = [
 export const terminalCommandResponses: Record<string, string> = {
   help:          "Available Commands:\n  • whoami    — Short bio & current focus\n  • stack     — Technical skills & technologies\n  • projects  — Overview of shipped products\n  • skills    — Core engineering competencies\n  • contact   — Direct communication channels\n  • about     — Quick background & experience\n  • github    — Visit my GitHub profile (@qwertyuii7)\n  • leetcode  — Visit my LeetCode stats (@chaudharymayank)\n  • matrix    — Trigger the full-page Matrix effect\n  • ls        — List portfolio directories & files\n  • uname -a  — System kernel & OS information\n  • cat bio   — Display full biography\n  • date      — Current system time & timestamp\n  • clear     — Clear terminal screen",
   whoami:        "Mayank Chaudhary — CS Engineering Student @ Lucknow University.\nBuilds in C++, Python & Web. Open to freelance work and exciting opportunities.",
-  stack:         "LANGUAGES          : JavaScript (ES6+), TypeScript, C++, Python\nFRONTEND           : React, Vite, Tailwind CSS, HTML5, CSS3, Framer Motion, GSAP\nBACKEND            : AI Agents, Payment Integrations, Node.js, Express.js, REST APIs, JWT Authentication, Socket.io\nDATABASE           : MongoDB, Supabase\nTOOLS              : AI Agents, Model Context Protocol (MCP), Git, GitHub, Postman, Cursor, VS Code, Warp, npm, Figma, Canva\nCLOUD & DEPLOYMENT : Vercel, Render, GitHub Actions\nCURRENTLY EXPLORING: System Design, WebSockets, Redis, 3D Web Experiences, Three.js Ecosystem",
-  projects:      "1. MEDIGUARD       — Healthcare safety & emergency response platform\n2. DEVELOPER LEAGUE — Global dev ranking & analytical dashboard\n3. SMART HOME AUTO — Command-driven home automation interface\n4. BANKING SYSTEM  — C++ terminal-based core banking engine\n5. SECURE AUTH     — C++ authentication & file persistence system",
-  skills:        "LANGUAGES          : JavaScript (ES6+), TypeScript, C++, Python\nFRONTEND           : React, Vite, Tailwind CSS, HTML5, CSS3, Framer Motion, GSAP\nBACKEND            : AI Agents, Payment Integrations, Node.js, Express.js, REST APIs, JWT Authentication, Socket.io\nDATABASE           : MongoDB, Supabase\nTOOLS              : AI Agents, Model Context Protocol (MCP), Git, GitHub, Postman, Cursor, VS Code, Warp, npm, Figma, Canva\nCLOUD & DEPLOYMENT : Vercel, Render, GitHub Actions\nCURRENTLY EXPLORING: System Design, WebSockets, Redis, 3D Web Experiences, Three.js Ecosystem",
+  stack:         "LANGUAGES          : JavaScript (ES6+), TypeScript, C++, Python\nFRONTEND           : React, Vite, Tailwind CSS, HTML5, CSS3, Framer Motion, GSAP\nBACKEND            : AI Agents, Payment Integrations, Node.js, Express.js, REST APIs, JWT, Socket.io, WebSockets\nDATABASE           : MongoDB, Supabase, Redis\nTOOLS              : MCP, Git, GitHub, Postman, Cursor, VS Code, Warp, Figma, Google Search Console, SSH\nCLOUD & DEPLOYMENT : Vercel, Render, GitHub Actions, AWS, Hostinger\nCURRENTLY EXPLORING: System Design, 3D Web Experiences, Three.js Ecosystem",
+  projects:      "1. SAHAYAK         — Cooperative gig services marketplace for SIH 2026\n2. MEDIGUARD       — Healthcare safety & emergency response platform\n3. DEVELOPER LEAGUE — Global dev ranking & analytical dashboard\n4. SMART HOME AUTO — Command-driven home automation interface\n5. BANKING SYSTEM  — C++ terminal-based core banking engine\n6. SECURE AUTH     — C++ authentication & file persistence system",
+  skills:        "LANGUAGES          : JavaScript (ES6+), TypeScript, C++, Python\nFRONTEND           : React, Vite, Tailwind CSS, HTML5, CSS3, Framer Motion, GSAP\nBACKEND            : AI Agents, Payment Integrations, Node.js, Express.js, REST APIs, JWT, Socket.io, WebSockets\nDATABASE           : MongoDB, Supabase, Redis\nTOOLS              : MCP, Git, GitHub, Postman, Cursor, VS Code, Warp, Figma, Google Search Console, SSH\nCLOUD & DEPLOYMENT : Vercel, Render, GitHub Actions, AWS, Hostinger\nCURRENTLY EXPLORING: System Design, 3D Web Experiences, Three.js Ecosystem",
   contact:       "Email    : contact@mayankchaudhary.dev\nGitHub   : github.com/qwertyuii7\nLeetCode : leetcode.com/u/chaudharymayank/\nLocation : Lucknow, India · Open for Freelance",
   about:         "CS Engineering Student entering 3rd year at Lucknow University.\nPassionate about low-level C++ systems and modern, high-performance web applications.",
   github:        "→ Redirecting to github.com/qwertyuii7 ...",
@@ -383,7 +401,7 @@ export const earlyExperiences = [
   },
   {
     year: "Now  ◉",
-    title: "Finding work as a Freelancer",
+    title: "Open to free lancing",
     org: "Open to opportunities",
     desc: "Available for freelance web development, product engineering, and open-source collaboration.",
   },

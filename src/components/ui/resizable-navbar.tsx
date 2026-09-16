@@ -13,12 +13,14 @@ import React, { useRef, useState } from "react";
 interface NavbarProps {
   children: React.ReactNode;
   className?: string;
+  isSpidey?: boolean;
 }
 
 interface NavBodyProps {
   children: React.ReactNode;
   className?: string;
   visible?: boolean;
+  isSpidey?: boolean;
 }
 
 interface NavItemsProps {
@@ -34,6 +36,7 @@ interface MobileNavProps {
   children: React.ReactNode;
   className?: string;
   visible?: boolean;
+  isSpidey?: boolean;
 }
 
 interface MobileNavHeaderProps {
@@ -48,7 +51,7 @@ interface MobileNavMenuProps {
   onClose: () => void;
 }
 
-export const Navbar = ({ children, className }: NavbarProps) => {
+export const Navbar = ({ children, className, isSpidey }: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
     target: ref,
@@ -73,8 +76,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible },
+              child as React.ReactElement<{ visible?: boolean; isSpidey?: boolean }>,
+              { visible, isSpidey },
             )
           : child,
       )}
@@ -82,7 +85,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   );
 };
 
-export const NavBody = ({ children, className, visible }: NavBodyProps) => {
+export const NavBody = ({ children, className, visible, isSpidey }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
@@ -90,7 +93,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible ? "var(--nav-shadow-visible)" : "none",
         width: visible ? "min(720px, 92vw)" : "calc(100% - 40px)",
         height: visible ? 50 : 64,
-        y: visible ? 16 : 0,
+        y: visible ? 16 : isSpidey ? -100 : 0, /* Hide offscreen if spidey and not visible */
+        opacity: visible ? 1 : isSpidey ? 0 : 1, /* Fade out if spidey and not visible */
         borderRadius: visible ? 9999 : 24,
       }}
       transition={{
@@ -148,7 +152,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   );
 };
 
-export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+export const MobileNav = ({ children, className, visible, isSpidey }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
@@ -159,7 +163,8 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         paddingRight: "16px",
         paddingLeft: "16px",
         borderRadius: visible ? 25 : 24,
-        y: visible ? 16 : 0,
+        y: visible ? 16 : isSpidey ? -100 : 0,
+        opacity: visible ? 1 : isSpidey ? 0 : 1,
       }}
       transition={{
         type: "spring",

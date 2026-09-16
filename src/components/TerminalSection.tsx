@@ -125,11 +125,14 @@ export function TerminalSection() {
     };
     flashReq.current = requestAnimationFrame(draw);
 
-    // Auto-dismiss after 4 s
+    // After matrix animation, portal into Spidey cinematic mode
     const dismiss = setTimeout(() => {
       setFlash(false);
       setMatrix(false);
-      setHistory(p => [...p, { type: "out", text: "// Matrix exited. Welcome back." }]);
+      document.documentElement.setAttribute("data-theme", "spidey");
+      localStorage.setItem("theme", "spidey");
+      window.dispatchEvent(new Event("storage"));
+      window.location.reload();
     }, 4000);
 
     return () => {

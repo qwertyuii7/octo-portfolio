@@ -1728,3 +1728,296 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+/* ── PREMIUM SPIDEY NEOBRUTALIST OVERRIDES ── */
+:root[data-theme="spidey"] {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #141414;
+  --border-primary: #000000;
+  --card-accent: #FACC15;
+}
+
+/* Comic Typography: Inked & Outlined */
+:root[data-theme="spidey"] h1,
+:root[data-theme="spidey"] h2,
+:root[data-theme="spidey"] h3 {
+  font-family: 'Space Grotesk', sans-serif !important;
+  text-transform: uppercase;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em;
+  -webkit-text-fill-color: #fff !important; /* Force solid color over gradients */
+  background: none !important;
+}
+
+/* Force geometric panels on main structural wrappers */
+:root[data-theme="spidey"] main,
+:root[data-theme="spidey"] .rounded-2xl,
+:root[data-theme="spidey"] .rounded-3xl,
+:root[data-theme="spidey"] .rounded-\[40px\],
+:root[data-theme="spidey"] .rounded-\[56px\],
+:root[data-theme="spidey"] .rounded-full {
+  border-radius: 0px !important;
+}
+
+/* Premium Neobrutalist 3D Shadows & Hover States */
+:root[data-theme="spidey"] .shadow-2xl,
+:root[data-theme="spidey"] .shadow-xl {
+  background-color: #141414;
+  box-shadow: 8px 8px 0px 0px #E23636 !important;
+  border: 3px solid #000 !important;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+:root[data-theme="spidey"] .shadow-2xl:hover,
+:root[data-theme="spidey"] .shadow-xl:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px 0px #3B82F6 !important;
+}
+
+:root[data-theme="spidey"] .shadow-lg,
+:root[data-theme="spidey"] .shadow-md {
+  box-shadow: 4px 4px 0px 0px #3B82F6 !important;
+  border: 2px solid #000 !important;
+}
+
+/* Targeted Halftone Textures (Applied to cards, not global body) */
+:root[data-theme="spidey"] body::after {
+  content: none !important;
+}
+
+:root[data-theme="spidey"] .shadow-2xl::before,
+:root[data-theme="spidey"] .shadow-xl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(226, 54, 54, 0.15) 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+:root[data-theme="spidey"] .shadow-2xl > *,
+:root[data-theme="spidey"] .shadow-xl > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pulse Glitch for Hero Name (Continuous Offset) */
+@keyframes premiumSpideyPulse {
+  0%, 100% { text-shadow: 3px 3px 0 #000, 5px 5px 0 #E23636, -2px -2px 0 #3B82F6; }
+  50% { text-shadow: 3px 3px 0 #000, -2px -2px 0 #E23636, 5px 5px 0 #3B82F6; }
+}
+
+:root[data-theme="spidey"] .hero-name-minimal {
+  animation: premiumSpideyPulse 3s infinite ease-in-out;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important; /* Prevents shadow overlapping with transparent text */
+  background: none !important;
+  -webkit-text-stroke: 2px #000;
+}
+
+/* Spider-Sense Cursor Enhancements */
+@keyframes spiderSenseRadar {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+:root[data-theme="spidey"] .custom-cursor {
+  background: #E23636 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0px #000;
+}
+
+:root[data-theme="spidey"] .custom-cursor.hover {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+:root[data-theme="spidey"] .custom-cursor.hover::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 50px; height: 50px;
+  transform: translate(-50%, -50%);
+  border: 3px dashed #E23636;
+  border-radius: 50%;
+  animation: spiderSenseRadar 1s ease-out infinite;
+}
+
+:root[data-theme="spidey"] .custom-cursor.hover::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 70px; height: 70px;
+  transform: translate(-50%, -50%);
+  border: 3px dashed #FFD700;
+  border-radius: 50%;
+  animation: spiderSenseRadar 1.5s ease-out infinite 0.5s;
+}
+
+/* Global Glitch Hover for Spidey Headings */
+:root[data-theme="spidey"] h1,
+:root[data-theme="spidey"] h2 {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+:root[data-theme="spidey"] h1:hover,
+:root[data-theme="spidey"] h2:hover {
+  text-shadow: 4px 4px 0 #E23636, -4px -4px 0 #3B82F6 !important;
+  color: #fff !important;
+  transform: skewX(-4deg) translateY(-2px);
+}
+
+
+/* -- SPIDEY COLOR CORRECTION & POLISH -- */
+/* Override hardcoded neon greens from original themes */
+:root[data-theme="spidey"] .hover\:border-green-500:hover {
+  border-color: #FACC15 !important;
+}
+:root[data-theme="spidey"] .text-emerald-400,
+:root[data-theme="spidey"] .text-emerald-500,
+:root[data-theme="spidey"] .text-emerald-600,
+:root[data-theme="spidey"] .text-green-400,
+:root[data-theme="spidey"] .text-green-500 {
+  color: #FACC15 !important;
+}
+:root[data-theme="spidey"] .bg-green-500 {
+  background-color: #FACC15 !important;
+  color: #000 !important;
+}
+:root[data-theme="spidey"] .hover\:bg-green-500:hover {
+  background-color: #E23636 !important;
+  color: #fff !important;
+}
+:root[data-theme="spidey"] .border-emerald-500\/30 {
+  border-color: rgba(250, 204, 21, 0.3) !important;
+}
+
+/* Fix Low Contrast Subtitles and Muted Text */
+:root[data-theme="spidey"] .text-neutral-500,
+:root[data-theme="spidey"] .text-neutral-400,
+:root[data-theme="spidey"] .text-gray-500,
+:root[data-theme="spidey"] .text-gray-400,
+:root[data-theme="spidey"] .text-muted-foreground {
+  color: #EFEFEF !important;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Fix Footer Accent Line */
+:root[data-theme="spidey"] footer::before,
+:root[data-theme="spidey"] footer .border-t {
+  border-top-color: #000 !important;
+  border-top-width: 3px !important;
+}
+:root[data-theme="spidey"] .bg-gradient-to-t {
+  background: none !important;
+}
+
+
+/* ── SPIDEY FULLSCREEN VIDEO LAYOUT OVERRIDES ── */
+:root[data-theme="spidey"] main {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+/* ── SPIDEY VIDEO: RESPONSIVE FIT ── */
+.spidey-bg-video {
+  object-fit: cover;
+  object-position: center center;
+  /* GPU-accelerated rendering for smoother playback */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Landscape screens (desktop, laptop, tablet landscape) — crop top/bottom is fine */
+@media (orientation: landscape) {
+  .spidey-bg-video {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+/* Portrait screens (phones, tablet portrait) — keep center of action visible */
+@media (orientation: portrait) {
+  .spidey-bg-video {
+    object-fit: cover;
+    object-position: center 30%;
+  }
+}
+
+/* Very tall narrow screens (phones) — position to keep the best frame visible */
+@media (max-aspect-ratio: 9/16) {
+  .spidey-bg-video {
+    object-position: center 25%;
+  }
+}
+
+/* Ultra-wide monitors — prevent excessive horizontal stretch */
+@media (min-aspect-ratio: 21/9) {
+  .spidey-bg-video {
+    object-position: center center;
+  }
+}
+:root[data-theme="spidey"] .hero-section {
+  border-bottom: none !important;
+  min-height: 100vh !important;
+  padding-top: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+:root[data-theme="spidey"] .hero-grid {
+  grid-template-columns: 1fr !important;
+  padding: 0 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+}
+:root[data-theme="spidey"] .hero-left-content {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto;
+}
+:root[data-theme="spidey"] .hero-text-center-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+:root[data-theme="spidey"] .hero-name-minimal {
+  align-items: center !important;
+  text-align: center !important;
+  color: #FACC15 !important;
+  -webkit-text-stroke: 2px #000;
+  text-shadow: 4px 4px 0px #E23636;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+:root[data-theme="spidey"] .hero-tagline-minimal {
+  justify-content: center !important;
+  text-align: center !important;
+  color: white !important;
+  -webkit-text-stroke: 1px #000;
+  text-shadow: 2px 2px 0px #E23636;
+  font-weight: 800;
+}
+:root[data-theme="spidey"] .hero-flip-word {
+  color: #FACC15 !important;
+}
+:root[data-theme="spidey"] .hero-greeting {
+  text-align: center !important;
+  width: 100%;
+}
+
+/* ── SPIDEY SHARP CORNERS (NO ROUNDED) ── */
+:root[data-theme="spidey"] *:not(.custom-cursor) {
+  border-radius: 0 !important;
+}

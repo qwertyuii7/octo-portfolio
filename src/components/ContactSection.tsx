@@ -159,6 +159,23 @@ export function ContactSection() {
           )}
         </div>
       </div>
+
+      {/* ── Secret Cinema Mode Easter Egg ── */}
+      <div className="flex justify-center py-10 reveal-item" style={{ transitionDelay: ".4s" }}>
+        <button
+          onClick={() => {
+            document.documentElement.setAttribute("data-theme", "spidey");
+            localStorage.setItem("theme", "spidey");
+            window.dispatchEvent(new Event("storage"));
+            window.location.reload();
+          }}
+          className="group flex items-center gap-3 px-6 py-3 border border-[var(--border-primary)]/30 bg-[var(--bg-secondary)]/50 backdrop-blur-sm text-[var(--text-muted)] hover:text-[#E23636] hover:border-[#E23636]/50 font-mono text-xs uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(226,54,54,0.15)]"
+        >
+          <span className="opacity-60 group-hover:opacity-100 transition-opacity">Bored?</span>
+          <span className="text-[var(--text-primary)] group-hover:text-[#E23636] font-bold transition-colors">Watch Cinema</span>
+          <span className="text-base group-hover:animate-bounce">🕸️</span>
+        </button>
+      </div>
     </section>
   );
 }
