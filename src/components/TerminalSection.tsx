@@ -125,14 +125,8 @@ export function TerminalSection() {
     };
     flashReq.current = requestAnimationFrame(draw);
 
-    // After matrix animation, portal into Spidey cinematic mode
     const dismiss = setTimeout(() => {
       setFlash(false);
-      setMatrix(false);
-      document.documentElement.setAttribute("data-theme", "spidey");
-      sessionStorage.setItem("spidey_mode", "true");
-      window.dispatchEvent(new Event("storage"));
-      window.location.reload();
     }, 4000);
 
     return () => {

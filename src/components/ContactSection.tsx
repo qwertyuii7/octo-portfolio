@@ -165,7 +165,7 @@ export function ContactSection() {
         <button
           onClick={() => {
             document.documentElement.setAttribute("data-theme", "spidey");
-            localStorage.setItem("theme", "spidey");
+            sessionStorage.setItem("spidey_mode", "true");
             window.dispatchEvent(new Event("storage"));
             window.location.reload();
           }}
