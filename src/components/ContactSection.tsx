@@ -105,7 +105,7 @@ export function ContactSection() {
           <div className="flex flex-wrap gap-3 mt-8">
             <a
               href="/assets/mayank_chaudhary_resume.pdf"
-              download
+              download="Mayank_Chaudhary_Resume.pdf"
               className="btn-brutal px-6 py-3 font-mono text-xs uppercase tracking-widest"
               data-cursor-hover=""
             >
