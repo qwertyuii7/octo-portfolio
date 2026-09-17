@@ -337,16 +337,7 @@ export const milestoneCarouselItems = [
   },
 ] as const;
 
-export const terminalCommands = [
-  "help",
-  "whoami",
-  "github",
-  "leetcode",
-  "hackerrank",
-  "projects",
-  "stack",
-  "clear",
-] as const;
+
 
 export const terminalCommandResponses: Record<string, string> = {
   help:          "Available Commands:\n  • whoami    — Short bio & current focus\n  • stack     — Technical skills & technologies\n  • projects  — Overview of shipped products\n  • skills    — Core engineering competencies\n  • contact   — Direct communication channels\n  • about     — Quick background & experience\n  • github    — Visit my GitHub profile (@qwertyuii7)\n  • leetcode  — Visit my LeetCode stats (@chaudharymayank)\n  • matrix    — Trigger the full-page Matrix effect\n  • ls        — List portfolio directories & files\n  • uname -a  — System kernel & OS information\n  • cat bio   — Display full biography\n  • date      — Current system time & timestamp\n  • clear     — Clear terminal screen",
