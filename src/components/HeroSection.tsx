@@ -70,8 +70,7 @@ export function HeroSection({ isSpidey }: { isSpidey?: boolean }) {
             {/* Name */}
             <div className="reveal-item" style={{ transitionDelay: ".2s" }}>
               <h1 
-                className={`hero-name-minimal cursor-none transition-all duration-300 ${isSpidey ? '!items-center !text-center !text-[#FACC15] uppercase tracking-widest' : ''}`} 
-                style={isSpidey ? { WebkitTextStroke: "2px #000", textShadow: "4px 4px 0px #E23636" } : {}}
+                className={`hero-name-minimal cursor-none transition-all duration-300 ${isSpidey ? '!items-center !text-center uppercase tracking-widest comic-title' : ''}`} 
                 data-cursor="hero-name"
                 onMouseEnter={() => setIsNameHovered(true)}
                 onMouseLeave={() => setIsNameHovered(false)}
