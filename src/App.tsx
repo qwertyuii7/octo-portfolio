@@ -27,6 +27,7 @@ export function App() {
   const [theme, setTheme] = useState(() => {
     if (typeof document !== "undefined") {
       if (sessionStorage.getItem("spidey_mode") === "true") {
+        document.documentElement.setAttribute("data-theme", "spidey");
         return "spidey";
       }
       const docTheme = document.documentElement.getAttribute("data-theme");
@@ -45,6 +46,9 @@ export function App() {
     const updateTheme = () => {
       if (sessionStorage.getItem("spidey_mode") === "true") {
         setTheme("spidey");
+        if (document.documentElement.getAttribute("data-theme") !== "spidey") {
+          document.documentElement.setAttribute("data-theme", "spidey");
+        }
         return;
       }
       const docTheme = document.documentElement.getAttribute("data-theme");
